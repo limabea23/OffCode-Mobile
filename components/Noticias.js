@@ -1,0 +1,40 @@
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import Header from './Header';
+import NewsSection from './NewsSection';
+import Card from './Card';
+
+export default function Noticias() {
+    return (
+        <View style={styles.container}>
+            <Header />
+            <ScrollView style={styles.content}>
+                <NewsSection />
+                <View style={styles.cardsContainer}>
+                    {[1, 2, 3].map((_, index) => (
+                        <Card
+                            key={index}
+                            userName="NOME USUÁRIO"
+                            content="Aqui vai o conteúdo do post ou notícia. Este é um exemplo de texto."
+                        />
+                    ))}
+                </View>
+            </ScrollView>
+        </View>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#000',
+    },
+    content: {
+        flex: 1,
+        padding: 16,
+    },
+    cardsContainer: {
+        marginTop: 16,
+    },
+});
+
