@@ -1,7 +1,7 @@
  // Página principal de notícias
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import Header from '../Header';
+import Header from './Header';
 import NewsSection from './NewsSection';
 import Card from './Card';
 
