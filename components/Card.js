@@ -32,23 +32,46 @@ const styles = StyleSheet.create({
         padding: 16,
         marginBottom: 16,
     },
+    cardHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 8,
+    },
+    userIcon: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#000',
+        marginRight: 8,
+    },
     cardTitle: {
         fontWeight: 'bold',
         fontSize: 14,
-        marginBottom: 8,
     },
     cardContent: {
         fontSize: 12,
         color: '#333',
         marginBottom: 16,
+        lineHeight: 18,
+        textAlign: 'justify',
     },
     cardFooter: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        borderTopWidth: 1,
+        borderTopColor: '#eee',
+        paddingTop: 8,
     },
     iconButton: {
         flexDirection: 'row',
         alignItems: 'center',
+        padding: 8,
+        borderRadius: 5,
+        backgroundColor: '#f0f0f0',
+        marginRight: 8,
+        flex: 1,
+        justifyContent: 'center',
     },
     iconText: {
         marginLeft: 4,
@@ -56,4 +79,3 @@ const styles = StyleSheet.create({
         color: '#000',
     },
 });
-
