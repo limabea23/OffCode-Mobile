@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Conexoes from './components/Conexoes';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
       <View style={styles.header}>
         <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
       </View>
@@ -26,8 +26,9 @@ export default function App() {
         <Conexoes />
       </View>
 
+      </ScrollView>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
