@@ -32,9 +32,15 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         padding: 16,
+        backgroundColor: '#000',
+        borderRadius: 10,   
     },
     cardsContainer: {
         marginTop: 16,
+        padding: 10,
+        backgroundColor: '#000',    
+        borderRadius: 10,
+        borderWidth: 2,
     },
 });
 

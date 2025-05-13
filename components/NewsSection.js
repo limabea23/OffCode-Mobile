@@ -18,17 +18,31 @@ const styles = StyleSheet.create({
     newsSection: {
         alignItems: 'center',
         marginBottom: 16,
+        padding: 15,
+        backgroundColor: '#000',
+        borderRadius: 10,   
     },
     newsImage: {
         width: '100%',
         height: 150,
         borderRadius: 10,
+        marginBottom: 8,
+        borderWidth: 2,
+        borderColor: '#fff',
+        resizeMode: 'cover',
+        shadowColor: '#000',
+        
     },
     newsTitle: {
         color: '#fff',
         fontSize: 18,
         fontWeight: 'bold',
         marginTop: 8,
+        textAlign: 'center',
+        backgroundColor: '#000',
+        padding: 8,
+        borderRadius: 10,
+        borderWidth: 2,
     },
 });
 
