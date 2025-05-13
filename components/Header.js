@@ -10,7 +10,6 @@ export default function Header() {
                     source={require('../assets/public/logotipo.png')} 
                     style={styles.logo}
                 />
-                <Text style={styles.subtitle}>A resposta para suas dúvidas está off code.</Text>
             </View>
             <View style={styles.searchContainer}>
                 <Ionicons name="search" size={20} color="#aaa" style={styles.searchIcon} />
@@ -38,9 +37,12 @@ const styles = StyleSheet.create({
         marginRight: 16,
     },
     logo: {
-        width: 50,
-        height: 50,
+        width: 175,
+        height: 70,
         marginBottom: 4,
+        borderRadius: 10,
+        borderWidth: 2,
+        
     },
     subtitle: {
         color: '#fff',
@@ -54,11 +56,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         paddingHorizontal: 10,
-        width: 200,
+        width: 180,
         marginRight: 16, 
+        height: 40,
     },
     searchIcon: {
-        marginRight: 8,
+        marginRight: 10,
         color: '#aaa',
         
     },
