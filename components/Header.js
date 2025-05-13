@@ -1,3 +1,4 @@
+// Cabeçalho comum a todas as páginas
 import React from 'react';
 import { View, Text, StyleSheet, TextInput, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
