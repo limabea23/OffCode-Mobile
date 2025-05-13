@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Noticias from './components/News/Noticias'; 
+import Noticias from './components/Noticias'; 
 
 export default function App() {
     return (
