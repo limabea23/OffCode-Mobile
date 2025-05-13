@@ -1,20 +1,18 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import Noticias from './components/Noticias'; 
+import Noticias from './components/News/Noticias'; 
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Noticias /> 
-      <StatusBar style="light" />
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Noticias />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000', 
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
 });

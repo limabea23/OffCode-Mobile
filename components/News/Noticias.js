@@ -1,28 +1,33 @@
+ // Página principal de notícias
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import Header from './Header';
+import Header from '../Header';
 import NewsSection from './NewsSection';
 import Card from './Card';
+
 
 export default function Noticias() {
     return (
         <View style={styles.container}>
             <Header />
-            <ScrollView style={styles.content}>
+            <ScrollView contentContainerStyle={styles.content}>
                 <NewsSection />
-                <View style={styles.cardsContainer}>
-                    {[1, 2, 3].map((_, index) => (
-                        <Card
-                            key={index}
-                            userName="NOME USUÁRIO"
-                            content="Aqui vai o conteúdo do post ou notícia. Este é um exemplo de texto."
-                        />
-                    ))}
-                </View>
+                <Card
+                    userName="NOME USUÁRIO"
+                    content="Aqui vai o conteúdo do primeiro post ou notícia. Este é um exemplo de texto."
+                />
+                <Card
+                    userName="NOME USUÁRIO"
+                    content="Aqui vai o conteúdo do segundo post ou notícia. Este é um exemplo de texto."
+                />
+                <Card
+                    userName="NOME USUÁRIO"
+                    content="Aqui vai o conteúdo do terceiro post ou notícia. Este é um exemplo de texto."
+                />
             </ScrollView>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
