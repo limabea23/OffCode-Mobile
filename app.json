@@ -4,7 +4,7 @@
     "slug": "OffCode-Mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/public/fotocapa.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
