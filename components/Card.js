@@ -1,6 +1,6 @@
- // Componente de card reutilizável
+// Componente de card reutilizável
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Card({ userName, content }) {
@@ -9,22 +9,22 @@ export default function Card({ userName, content }) {
             <Text style={styles.cardTitle}>{userName}</Text>
             <Text style={styles.cardContent}>{content}</Text>
             <View style={styles.cardFooter}>
-                <TouchableOpacity style={styles.iconButton}>
-                    <Ionicons name="heart-outline" size={20} color="#000" />
+                <View style={styles.iconButton}>
+                    <Ionicons name="heart-outline" size={20} color="#333" />
                     <Text style={styles.iconText}>100</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.iconButton}>
-                    <Ionicons name="chatbubble-ellipses-outline" size={20} color="#000" />
+                </View>
+                <View style={styles.iconButton}>
+                    <Ionicons name="chatbubble-outline" size={20} color="#333" />
                     <Text style={styles.iconText}>100</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.iconButton}>
-                    <Ionicons name="bookmark-outline" size={20} color="#000" />
+                </View>
+                <View style={styles.iconButton}>
+                    <Ionicons name="bookmark-outline" size={20} color="#333" />
                     <Text style={styles.iconText}>100</Text>
-                </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     card: {
@@ -36,25 +36,13 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
-        elevation: 3, 
-        
-    },
-    cardHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 12,
-    },
-    userIcon: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        backgroundColor: '#ccc',
-        marginRight: 12,
+        elevation: 3,
     },
     cardTitle: {
         fontWeight: 'bold',
         fontSize: 16,
         color: '#333',
+        marginBottom: 8,
     },
     cardContent: {
         fontSize: 14,
@@ -70,22 +58,33 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: '#ddd',
         paddingTop: 12,
+        paddingBottom: 8,
+        marginTop: 10,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 12,
+        paddingHorizontal: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
     },
     iconButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 10,
+        padding: 8,
         borderRadius: 8,
-        backgroundColor: '#f9f9f9',
-        marginRight: 10,
-        flex: 1,
-        justifyContent: 'center',
+        backgroundColor: '#fff',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 }, 
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
     },
     iconText: {
         marginLeft: 6,
         fontSize: 14,
         color: '#333',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        backgroundColor: '#fff',
+        borderRadius: 8,
+        padding: 4,
+        borderWidth: 1,
     },
 });
