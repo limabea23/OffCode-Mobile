@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#fff',
         resizeMode: 'cover',
+
     },
     iconLeft: {
         position: 'absolute',
