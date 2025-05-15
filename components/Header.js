@@ -27,20 +27,21 @@ export default function Header() {
 const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center', 
         justifyContent: 'space-between',
         padding: 16,
         backgroundColor: '#000',
+        marginTop: 20,
+        
     },
     logoContainer: {
-        flexDirection: 'column',
-        alignItems: 'flex-start',
+        flexDirection: 'row', 
+        alignItems: 'center', 
         marginRight: 16,
     },
     logo: {
-        width: 175,
+        width: 195,
         height: 70,
-        marginBottom: 4,
         borderRadius: 10,
         borderWidth: 2,
         
@@ -53,20 +54,18 @@ const styles = StyleSheet.create({
     },
     searchContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center', 
         backgroundColor: '#fff',
         borderRadius: 20,
         paddingHorizontal: 10,
         width: 180,
-        marginRight: 16, 
         height: 40,
     },
-    searchIcon: {
+searchIcon: {
         marginRight: 10,
         color: '#aaa',
-        
     },
-    searchInput: {
+searchInput: {
         flex: 1,
         fontSize: 14,
         color: '#000',
