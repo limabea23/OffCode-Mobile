@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     newsImage: {
-        width: 300, // Ajuste para caber melhor na tela
-        height: 180, // Proporção ajustada
+        width: 300, 
+        height: 180, 
         borderRadius: 10,
         borderWidth: 2,
         borderColor: '#fff',
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         borderRadius: 20,
-        marginHorizontal: 10, // Espaçamento ajustado
+        marginHorizontal: 10, 
     },
     arrowText: {
         fontSize: 18,
