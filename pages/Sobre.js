@@ -1,10 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, ScrollView } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Carousel from "react-native-reanimated-carousel";
 
 export default function App() {
+
+  const data = [
+  { id: 1, image: require('./assets/public/teste.png') },
+  { id: 2, image: require('./assets/public/teste.png') },
+  { id: 3, image: require('./assets/public/teste.png') },
+  { id: 4, image: require('./assets/public/teste.png') },
+  { id: 5, image: require('./assets/public/teste.png') },
+  { id: 6, image: require('./assets/public/teste.png') },
+];  
+
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView>
       <View style={styles.header}>
         <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
         <View style={styles.linhaHorizontal} />
@@ -15,31 +27,23 @@ export default function App() {
         <Text style={styles.p}>Nosso time de desenvolvedores une talento e inovação para transformar ideias em soluções digitais eficientes.</Text>
       </View>
 
-      <View style={styles.carrossel}>
-        <View style={styles.conteudo}>
-          <AntDesign name="left" size={24} color="white" />
-          <Image style={styles.pic} source={require('./assets/public/teste.png')} />
-          <AntDesign name="right" size={24} color="white" />
-        </View>
+      <View style={styles.carouselContainer}> 
+        <Carousel
+          width={320}
+          height={200}
+          data={data}
+          autoPlay={true}
+          autoPlayInterval={1500}
+          scrollAnimationDuration={1000}
+          renderItem={({ item }) => (
+  <View style={styles.image}>
+    <Image source={item.image} style={styles.image} />
+  </View>
+)}
+          />
       </View>
 
-      <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
-              <View style={styles.slide}>
-                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
-              </View>
-              <View style={styles.slide}>
-                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
-              </View>
-              <View style={styles.slide}>
-                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
-              </View>
-              <View style={styles.slide}>
-                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
-              </View>
-              <View style={styles.slide}>
-                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
-              </View>
-            </ScrollView>
+      </ScrollView>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -50,6 +54,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
+    justifyContent: 'center',
   },
   p: {
     color: '#fff',
@@ -90,23 +95,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  container: {
-    marginTop: 20,
-    flexDirection: 'row',
-  },
-  slide: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 300, 
-    height: 200, 
-    marginRight: 10,
-  },
-  pic: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-    borderRadius: 10,
   },
 });
