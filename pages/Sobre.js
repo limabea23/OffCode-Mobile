@@ -5,7 +5,6 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
       <View style={styles.header}>
         <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
         <View style={styles.linhaHorizontal} />
@@ -24,11 +23,23 @@ export default function App() {
         </View>
       </View>
 
-      <View style={styles.example}>
-        
-      </View>
-
-      </ScrollView>
+      <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
+              <View style={styles.slide}>
+                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
+              </View>
+              <View style={styles.slide}>
+                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
+              </View>
+              <View style={styles.slide}>
+                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
+              </View>
+              <View style={styles.slide}>
+                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
+              </View>
+              <View style={styles.slide}>
+                <Image style={styles.pic} source={require('./assets/public/teste.png')} />
+              </View>
+            </ScrollView>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -39,7 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   p: {
     color: '#fff',
@@ -80,5 +90,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  container: {
+    marginTop: 20,
+    flexDirection: 'row',
+  },
+  slide: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 300, 
+    height: 200, 
+    marginRight: 10,
+  },
+  pic: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    borderRadius: 10,
   },
 });
