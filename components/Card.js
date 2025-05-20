@@ -1,14 +1,16 @@
 // Componente de card reutilizável
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
 
 export default function Card({ userName, content }) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(205);
   const [saved, setSaved] = useState(false);
   const [saves, setSaves] = useState(99);
+  const [showComment, setShowComment] = useState(false);
+  const [comment, setComment] = useState('');
+  const [commentsCount, setCommentsCount] = useState(100);
 
   function handleLike() {
     setLiked(!liked);
@@ -20,7 +22,15 @@ export default function Card({ userName, content }) {
     setSaves(saves + (saved ? -1 : 1));
   }
 
- return (
+  function handleCommentSend() {
+    if (comment.trim() !== '') {
+      setCommentsCount(commentsCount + 1);
+      setComment('');
+      setShowComment(false);
+    }
+  }
+
+  return (
     <View style={styles.card}>
       <Text style={styles.cardTitle}>{userName}</Text>
       <Text style={styles.cardContent}>{content}</Text>
@@ -29,20 +39,29 @@ export default function Card({ userName, content }) {
           <Ionicons name="heart-outline" size={20} color={liked ? '#8000ff' : '#333'} />
           <Text style={[styles.iconText, liked && { color: '#8000ff' }]}>{likes}</Text>
         </TouchableOpacity>
-        <View style={styles.iconButton}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => setShowComment(!showComment)}>
           <Ionicons name="chatbubble-outline" size={20} color="#333" />
-          <Text style={styles.iconText}>100</Text>
-        </View>
+          <Text style={styles.iconText}>{commentsCount}</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={handleSave}>
           <Ionicons name={saved ? "bookmark" : "bookmark-outline"} size={20} color={saved ? "#8000ff" : "#333"} />
           <Text style={[styles.iconText, saved && { color: '#8000ff' }]}>{saves}</Text>
         </TouchableOpacity>
       </View>
+      {showComment && (
+        <View style={styles.commentBox}>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite seu comentário..."
+            value={comment}
+            onChangeText={setComment}
+          />
+          <Button title="Enviar" onPress={handleCommentSend} />
+        </View>
+      )}
     </View>
   );
 }
-
-
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#ffffff',
@@ -104,4 +123,19 @@ const styles = StyleSheet.create({
         padding: 4,
         borderWidth: 1,
     },
+    commentBox: {
+        marginTop: 10,
+        backgroundColor: '#f3f3f3',
+        borderRadius: 8,
+        padding: 10,
+    },
+    input: {
+        backgroundColor: '#fff',
+        borderRadius: 6,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        padding: 8,
+        marginBottom: 8,
+    },
 });
+  
