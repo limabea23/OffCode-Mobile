@@ -1,30 +1,47 @@
 // Componente de card reutilizável
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+
 export default function Card({ userName, content }) {
-    return (
-        <View style={styles.card}>
-            <Text style={styles.cardTitle}>{userName}</Text>
-            <Text style={styles.cardContent}>{content}</Text>
-            <View style={styles.cardFooter}>
-                <View style={styles.iconButton}>
-                    <Ionicons name="heart-outline" size={20} color="#333" />
-                    <Text style={styles.iconText}>100</Text>
-                </View>
-                <View style={styles.iconButton}>
-                    <Ionicons name="chatbubble-outline" size={20} color="#333" />
-                    <Text style={styles.iconText}>100</Text>
-                </View>
-                <View style={styles.iconButton}>
-                    <Ionicons name="bookmark-outline" size={20} color="#333" />
-                    <Text style={styles.iconText}>100</Text>
-                </View>
-            </View>
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(205);
+  const [saved, setSaved] = useState(false);
+  const [saves, setSaves] = useState(99);
+
+  function handleLike() {
+    setLiked(!liked);
+    setLikes(likes + (liked ? -1 : 1));
+  }
+
+  function handleSave() {
+    setSaved(!saved);
+    setSaves(saves + (saved ? -1 : 1));
+  }
+
+ return (
+    <View style={styles.card}>
+      <Text style={styles.cardTitle}>{userName}</Text>
+      <Text style={styles.cardContent}>{content}</Text>
+      <View style={styles.cardFooter}>
+        <TouchableOpacity style={styles.iconButton} onPress={handleLike}>
+          <Ionicons name="heart-outline" size={20} color={liked ? '#8000ff' : '#333'} />
+          <Text style={[styles.iconText, liked && { color: '#8000ff' }]}>{likes}</Text>
+        </TouchableOpacity>
+        <View style={styles.iconButton}>
+          <Ionicons name="chatbubble-outline" size={20} color="#333" />
+          <Text style={styles.iconText}>100</Text>
         </View>
-    );
+        <TouchableOpacity style={styles.iconButton} onPress={handleSave}>
+          <Ionicons name={saved ? "bookmark" : "bookmark-outline"} size={20} color={saved ? "#8000ff" : "#333"} />
+          <Text style={[styles.iconText, saved && { color: '#8000ff' }]}>{saves}</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
+
 
 const styles = StyleSheet.create({
     card: {

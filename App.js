@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
-import Noticias from './components/Noticias'; 
+import Noticias from './pages/Noticias'; 
 
 export default function App() {
   return (

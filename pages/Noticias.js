@@ -1,9 +1,9 @@
  // Página principal de notícias
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
-import Header from './Header';
-import NewsSection from './NewsSection';
-import Card from './Card';
+import Header from '../components/Header';
+import NewsSection from '../components/NewsSection';
+import Card from '../components/Card';
 
 
 export default function Noticias() {
