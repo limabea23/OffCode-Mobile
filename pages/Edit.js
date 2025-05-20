@@ -3,6 +3,8 @@ import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollVi
 import Conexoes from './components/Conexoes';
 import Especializacoes from './components/Especializacoes';
 
+import EvilIcons from '@expo/vector-icons/EvilIcons';
+
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
@@ -16,7 +18,10 @@ export default function App() {
 
       <View style={styles.perfil}>
         <View style={styles.info}>
-            <Text style={styles.p}>Nome</Text>
+        <View style={styles.pen}>
+        <Text style={styles.p}>Nome</Text>
+        <EvilIcons name="pencil" size={20} color="white" />
+        </View>
             <TouchableOpacity style={styles.botao}>
               <Text style={styles.textoBotao}>Editar perfil</Text>
             </TouchableOpacity>
@@ -25,8 +30,16 @@ export default function App() {
 
       <View style={styles.body}>
         <Text style={styles.p}>@username</Text>
+        <View style={styles.pen}>
         <Text style={styles.p}> <Text style={styles.pco}>Empresa</Text> / Pessoal</Text>
+        <EvilIcons name="pencil" size={20} color="white" />
+        </View>
+        <View style={styles.pen}>
+        <Text style={styles.p}>Biografia</Text>
+        <EvilIcons name="pencil" size={20} color="white" />
+        </View>
         <Text style={styles.p}>Transformamos ideias em soluções inovadoras 🚀 | Tecnologia, criatividade e impacto 🌐 | Conectando pessoas e oportunidades no Off Code 💡</Text>
+
         <Conexoes />
       </View>
 
@@ -108,5 +121,9 @@ const styles = StyleSheet.create({
   marginTop: 15, 
   flexDirection: 'row',
   alignItems: 'center',
+},
+  pen: {
+    flexDirection: 'row',
+    alignItems: 'center',
 },
 });
