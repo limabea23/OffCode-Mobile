@@ -9,12 +9,12 @@ export default function App() {
       <ScrollView>
       <View style={styles.header}>
         <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
+        <Image style={styles.pic} source={require('./assets/public/fotoprofile.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
 
       <View style={styles.perfil}>
-        <Image style={styles.pic} source={require('./assets/public/fotoprofile.png')} />
         <View style={styles.info}>
             <Text style={styles.p}>Nome</Text>
             <TouchableOpacity style={styles.botao}>
@@ -57,7 +57,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   header: {
-    
+    position: 'relative',
+    width: '100%',
+    height: 220,
   },
   capa: {
     width: 400,
@@ -72,12 +74,15 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
     borderStyle: 'solid',
     borderWidth: 2,
+    position: 'absolute',
+    bottom: -50,
+    zIndex: 1,
   },
   info: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 200,
+    marginLeft: 180,
   },
   botao: {
     padding: 10,
@@ -86,6 +91,7 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: 'center',
     backgroundColor: '#8c52ff',
+    marginLeft: 20,
   },
   textoBotao: {
     color: '#fff',
@@ -97,5 +103,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff', 
     alignSelf: 'center', 
     marginTop: 5, 
+},
+  perfil: {
+  marginTop: 15, 
+  flexDirection: 'row',
+  alignItems: 'center',
 },
 });
