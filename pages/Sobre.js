@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, ScrollView } from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import Carousel from "react-native-reanimated-carousel";
 
-export default function App() {
+export default function Sobre() { 
 
   const data = [
   { id: 1, image: require('./assets/public/teste.png') },
@@ -29,17 +28,14 @@ export default function App() {
 
       <View style={styles.carouselContainer}> 
         <Carousel
-          width={320}
-          height={200}
+          width={500}
+          height={500}
           data={data}
-          autoPlay={true}
-          autoPlayInterval={1500}
-          scrollAnimationDuration={1000}
           renderItem={({ item }) => (
-  <View style={styles.image}>
-    <Image source={item.image} style={styles.image} />
-  </View>
-)}
+            <View style={styles.imageContainer}>
+              <Image source={item.image} style={styles.image} />
+            </View>
+          )}
           />
       </View>
 
@@ -67,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   capa: {
-    width: 400,
+    width: 500,
     height: 200,
   },
   linhaHorizontal: {
@@ -95,5 +91,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  imageContainer: {
+    width: 500,
+    height: 500,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
 });
