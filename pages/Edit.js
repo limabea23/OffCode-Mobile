@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import Conexoes from './components/Conexoes';
 import Especializacoes from './components/Especializacoes';
 
@@ -19,7 +19,7 @@ export default function App() {
       <View style={styles.perfil}>
         <View style={styles.info}>
         <View style={styles.pen}>
-        <Text style={styles.p}>Nome</Text>
+        <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="Nome" />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
             <TouchableOpacity style={styles.botao}>
@@ -29,16 +29,21 @@ export default function App() {
       </View>
 
       <View style={styles.body}>
-        <Text style={styles.p}>@username</Text>
+        <View style={styles.pen}>
+          <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="@username" />
+        <EvilIcons name="pencil" size={20} color="white" />
+        </View>
+      
         <View style={styles.pen}>
         <Text style={styles.p}> <Text style={styles.pco}>Empresa</Text> / Pessoal</Text>
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
-        <View style={styles.pen}>
         <Text style={styles.p}>Biografia</Text>
+        <View style={styles.pen}>
+        
+        <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="Escreva aqui..." />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
-        <Text style={styles.p}>Transformamos ideias em soluções inovadoras 🚀 | Tecnologia, criatividade e impacto 🌐 | Conectando pessoas e oportunidades no Off Code 💡</Text>
 
         <Conexoes />
       </View>
@@ -126,4 +131,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
 },
+  input: {
+    color: '#fff',
+    borderColor: '#8c52ff',
+    borderWidth: 1,  
+    borderRadius: 5,
+  }
 });
