@@ -2,11 +2,12 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import Noticias from './pages/Noticias'; 
+import Duvidas from './pages/Duvidas';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Noticias /> 
+      <Duvidas />
       <StatusBar style="light" />
     </View>
   );

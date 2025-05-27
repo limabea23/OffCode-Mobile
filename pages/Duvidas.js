@@ -1,29 +1,26 @@
- // Página principal de notícias
+ // Página principal de duvidas
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import Header from '../components/Header';
-import NewsSection from '../components/NewsSection';
-import Card from '../components/Card';
+import Card from '../components/Card'
+import DoubtSession from '../components/DoubtSession';
 
 
-export default function Noticias() {
+export default function Duvidas () {
     return (
         <View style={styles.container}>
             <Header />
             <ScrollView contentContainerStyle={styles.content}>
-                <NewsSection />
+                <DoubtSession />
                 <Card
                     userName="NOME USUÁRIO"
-                    content="Aqui vai o conteúdo do primeiro post ou notícia. Este é um exemplo de texto."
+                    content="Aqui vai um post da primeira duvida. Este é um exemplo de texto."
                 />
                 <Card
                     userName="NOME USUÁRIO"
-                    content="Aqui vai o conteúdo do segundo post ou notícia. Este é um exemplo de texto."
+                    content="Aqui vai um post da segunda duvida. Este é um exemplo de texto."
                 />
-                <Card
-                    userName="NOME USUÁRIO"
-                    content="Aqui vai o conteúdo do terceiro post ou notícia. Este é um exemplo de texto."
-                />
+
             </ScrollView>
         </View>
     );
@@ -32,14 +29,20 @@ export default function Noticias() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: '#000',
+        paddingTop: 40,
+        paddingHorizontal: 16,
+        paddingBottom: 16,
+        borderRadius: 10,
+        borderWidth: 2,
     },
     content: {
         flex: 1,
         padding: 16,
         backgroundColor: '#000',
-        borderRadius: 10,   
+        borderRadius: 10,  
+        borderWidth: 2, 
+
         
     },
     cardsContainer: {
@@ -48,6 +51,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',    
         borderRadius: 10,
         borderWidth: 2,
+        borderColor: '#fff',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+
     },
 });
 
