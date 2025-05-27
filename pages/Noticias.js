@@ -1,3 +1,4 @@
+
  // Página principal de notícias
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
