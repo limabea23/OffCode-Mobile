@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import Conexoes from './components/Conexoes';
 import Especializacoes from './components/Especializacoes';
+import Bottom from './components/Bottom';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
@@ -35,12 +36,13 @@ export default function App() {
         </View>
       
         <View style={styles.pen}>
-        <Text style={styles.p}> <Text style={styles.pco}>Empresa</Text> / Pessoal</Text>
+        <Bottom />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
+
         <Text style={styles.p}>Biografia</Text>
-        <View style={styles.pen}>
         
+        <View style={styles.pen}>
         <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="Escreva aqui..." />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
