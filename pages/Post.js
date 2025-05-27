@@ -122,7 +122,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         borderBottomColor: '#000',
-        height: 80,
+        height: 90,
+        padding: 10,
     },
     userAvatar: {
         width: 50,
