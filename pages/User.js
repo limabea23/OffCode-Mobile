@@ -3,7 +3,7 @@ import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollVi
 import Conexoes from './components/Conexoes';
 import Especializacoes from './components/Especializacoes';
 
-export default function App() {
+export default function User() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
