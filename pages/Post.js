@@ -1,14 +1,34 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import { Ionicons } from '@expo/vector-icons';
+import Toast from 'react-native-root-toast';
 
-export default function Post() {
+export default function Post({ navigation }) {
     const [selectedOption, setSelectedOption] = useState('post');
     const [selectedLanguage, setSelectedLanguage] = useState('');
+    const [postText, setPostText] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handlePublish = async () => {
+        setLoading(true);
+        // Simula publicação
+        setTimeout(() => {
+            setLoading(false);
+            setPostText('');
+            Toast.show('Publicado com sucesso!', {
+                duration: Toast.durations.SHORT,
+                position: Toast.positions.BOTTOM,
+                backgroundColor: '#6a0dad',
+                textColor: '#fff',
+            });
+        }, 1500);
+    };
 
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <Ionicons name="arrow-back-circle-outline" size={32} color="#fff" style={{ marginRight: 8 }} />
                 <Text style={styles.backText}>VOLTAR</Text>
             </TouchableOpacity>
 
@@ -36,9 +56,16 @@ export default function Post() {
                     </Text>
                 </View>
 
-                <Text style={styles.postText}>KEFNMUNUENUNUWDJUIUDHREYTRGHYUJSKQQUSUNHNDBVHBDGHBXNSJMNSENEUHGFNUNDFDGEFWWQQWWQDXLSDXKLCN WHVBXYWHWBSIW</Text>
+                <TextInput
+                    style={styles.postTextInput}
+                    placeholder="Digite sua dúvida ou post aqui..."
+                    placeholderTextColor="#888"
+                    multiline
+                    value={postText}
+                    onChangeText={setPostText}
+                />
 
-                <Text style={styles.languageLabel}>SELECIONE A LINGUAGEM UTILIZADA EM SEU POST</Text>
+                <Text style={styles.languageLabel}>SELECIONE A LINGUAGEM UTILIZADA EM SEU POST:</Text>
                 <View style={styles.pickerContainer}>
                     <Picker
                         selectedValue={selectedLanguage}
@@ -52,8 +79,14 @@ export default function Post() {
                 </View>
             </View>
 
-            <TouchableOpacity style={styles.publishButton}>
-                <Text style={styles.publishText}>PUBLICAR</Text>
+            <TouchableOpacity
+                style={[styles.publishButton, loading || !postText ? { opacity: 0.5 } : {}]}
+                disabled={loading || !postText}
+                onPress={handlePublish}
+            >
+                <Text style={styles.publishText}>
+                    {loading ? 'PUBLICANDO...' : 'PUBLICAR'}
+                </Text>
             </TouchableOpacity>
         </View>
     );
@@ -63,12 +96,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000',
-
         padding: 16,
     },
     backButton: {
         marginBottom: 16,
         padding: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     backText: {
         color: '#fff',
@@ -88,10 +122,8 @@ const styles = StyleSheet.create({
     userInfo: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 8,
-        paddingBottom: 8,
-        borderBottomWidth: 1,
         borderBottomColor: '#000',
+        height: 80,
     },
     userAvatar: {
         width: 50,
@@ -104,9 +136,26 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     userName: {
-        color: '#fff',
+        color: 'black',
         fontSize: 16,
         fontWeight: 'bold',
+        textAlign: 'left',
+        height: 40,
+        marginLeft: 5,
+    },
+    postTextInput: {
+        color: '#555',
+        fontSize: 14,
+        marginBottom: 20,
+        lineHeight: 20,
+        textAlignVertical: 'top',
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#000',
+        minHeight: 80,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 8,
     },
     postHeader: {
         position: 'absolute',
@@ -114,7 +163,6 @@ const styles = StyleSheet.create({
         right: 10,
         flexDirection: 'row',
         alignItems: 'center',
-
     },
     postType: {
         color: '#8e8e8e',
@@ -127,14 +175,25 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     activeText: {
-        color: '#6a0dad', 
+        color: '#6a0dad',
         fontWeight: 'bold',
+        textDecorationLine: 'underline',
     },
-
     languageLabel: {
-        color: '#fff',
+        color: 'black',
         fontSize: 14,
         marginBottom: 8,
+        textAlign: 'left',
+        fontWeight: 'bold',
+        paddingHorizontal: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+        marginTop: 20,
+        marginBottom: 10,
+        backgroundColor: '#f3f3f3',
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
     },
     pickerContainer: {
         backgroundColor: '#1a1a1a',
@@ -147,6 +206,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 10,
         width: '100%',
+        backgroundColor: '#f3f3f3',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        fontSize: 16,
+        textAlign: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
     },
     publishButton: {
         backgroundColor: '#6a0dad',
