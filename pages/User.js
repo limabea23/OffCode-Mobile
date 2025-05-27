@@ -27,7 +27,7 @@ export default function User() {
         <Text style={styles.p}>@username</Text>
         <Text style={styles.p}> <Text style={styles.pco}>Empresa</Text> / Pessoal</Text>
         <Text style={styles.p}>Transformamos ideias em soluções inovadoras 🚀 | Tecnologia, criatividade e impacto 🌐 | Conectando pessoas e oportunidades no Off Code 💡</Text>
-        <Conexoes />
+        <Conexoes seguindo="394" seguidores="3920" postagens="204" />
       </View>
 
       <View style={styles.linhaHorizontal} />

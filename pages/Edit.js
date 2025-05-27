@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import Conexoes from './components/Conexoes';
-import Especializacoes from './components/Especializacoes';
-import Bottom from './components/Bottom';
+import Especializacoes from './components/EspecializacoesE';
+import Bottom from './components/Button';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
@@ -24,7 +24,7 @@ export default function Edit() {
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
             <TouchableOpacity style={styles.botao}>
-              <Text style={styles.textoBotao}>Editar perfil</Text>
+              <Text style={styles.textoBotao}>Feito</Text>
             </TouchableOpacity>
         </View>
       </View>
@@ -47,7 +47,7 @@ export default function Edit() {
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
 
-        <Conexoes />
+        <Conexoes seguindo="394" seguidores="3920" postagens="204" />
       </View>
 
       <View style={styles.linhaHorizontal} />
@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 180,
+    marginLeft: 130,
   },
   botao: {
     padding: 10,
     borderRadius: 10,
-    width: 100,
+    width: 80,
     height: 40,
     alignItems: 'center',
     backgroundColor: '#8c52ff',
@@ -134,9 +134,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 },
   input: {
-    color: '#fff',
-    borderColor: '#8c52ff',
-    borderWidth: 1,  
+    color: '#fff', 
     borderRadius: 5,
+    width: 100, 
+    height: 40, 
   }
 });
