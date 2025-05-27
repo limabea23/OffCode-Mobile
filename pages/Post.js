@@ -12,7 +12,6 @@ export default function Post({ navigation }) {
 
     const handlePublish = async () => {
         setLoading(true);
-        // Simula publicação
         setTimeout(() => {
             setLoading(false);
             setPostText('');
