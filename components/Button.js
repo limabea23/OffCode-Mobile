@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function Bottom() {
+export default function Button() {
     const [selectedOption, setSelectedOption] = useState("Empresa");
 
     return (
