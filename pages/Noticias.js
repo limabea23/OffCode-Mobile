@@ -1,4 +1,4 @@
-// Header.js
+// Página principal de notícias
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
 import Header from '../components/Header';
