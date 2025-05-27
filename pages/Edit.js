@@ -6,7 +6,7 @@ import Bottom from './components/Bottom';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
-export default function App() {
+export default function Edit() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
