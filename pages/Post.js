@@ -1,41 +1,56 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 export default function Post() {
+    const [selectedOption, setSelectedOption] = useState('post');
     const [selectedLanguage, setSelectedLanguage] = useState('');
+
     return (
         <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-            <Text style={styles.backText}>VOLTAR</Text>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <Text style={styles.backText}>VOLTAR</Text>
+            </TouchableOpacity>
 
-        </TouchableOpacity>
-        
-        <View style={styles.postCard}>
-            <View style={styles.userInfo}>
-                <Image
-                    source={{ uri: 'https://via.placeholder.com/50' }}
-                    style={styles.userAvatar}
-                />
-                <View>
-                    <Text style={styles.postType}>POST/DÚVIDA</Text>
+            <View style={styles.postCard}>
+                <View style={styles.userInfo}>
+                    <Image
+                        source={{ uri: 'https://via.placeholder.com/50' }}
+                        style={styles.userAvatar}
+                    />
+                    <Text style={styles.userName}>NOME USUÁRIO</Text>
+                </View>
+
+                <View style={styles.postHeader}>
+                    <Text
+                        style={[styles.postType, selectedOption === 'post' && styles.activeText]}
+                        onPress={() => setSelectedOption('post')}
+                    >
+                        POST/
+                    </Text>
+                    <Text
+                        style={[styles.doubtText, selectedOption === 'duvida' && styles.activeText]}
+                        onPress={() => setSelectedOption('duvida')}
+                    >
+                        DÚVIDA
+                    </Text>
+                </View>
+
+                <Text style={styles.postText}>KEFNMUNUENUNUWDJUIUDHREYTRGHYUJSKQQUSUNHNDBVHBDGHBXNSJMNSENEUHGFNUNDFDGEFWWQQWWQDXLSDXKLCN WHVBXYWHWBSIW</Text>
+
+                <Text style={styles.languageLabel}>SELECIONE A LINGUAGEM UTILIZADA EM SEU POST</Text>
+                <View style={styles.pickerContainer}>
+                    <Picker
+                        selectedValue={selectedLanguage}
+                        onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
+                        style={styles.picker}
+                    >
+                        <Picker.Item label="JavaScript" value="js" />
+                        <Picker.Item label="CSS" value="css" />
+                        <Picker.Item label="SQL" value="sql" />
+                    </Picker>
                 </View>
             </View>
-
-             <Text style={styles.h1}>JEDNWJFNDJUNDJUWNDUJWNHHSNDWUDHWIUDHUWRGYEFGYTWEVFUJHESVFBHEFBWHEEBFUWFBWFBWFHBWYUFBGWYEFGBYEFBWYEHFBWHEFBWHBFWHEFBWEFHBWFHEBWYHEFBWHFBHBFW</Text>
-             <Text style={styles.languageLabel}>SELECIONE A LINGUAGEM UTILIZADA EM SEU POST</Text>
-        <View style={styles.pickerContainer}>
-            <Picker
-                selectedValue={selectedLanguage}
-                onValueChange={(itemValue) => setSelectedLanguage(itemValue)}
-                style={styles.picker}
-            >
-                <Picker.Item label="JavaScript" value="js" />
-                <Picker.Item label="CSS" value="css" />
-                <Picker.Item label="SQL" value="sql" />
-            </Picker>
-        </View>
-        </View>
 
             <TouchableOpacity style={styles.publishButton}>
                 <Text style={styles.publishText}>PUBLICAR</Text>
@@ -48,12 +63,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#000',
+
         padding: 16,
     },
     backButton: {
         marginBottom: 16,
         padding: 10,
-        
     },
     backText: {
         color: '#fff',
@@ -63,17 +78,12 @@ const styles = StyleSheet.create({
     postCard: {
         backgroundColor: '#ffffff',
         borderRadius: 12,
-        width: 315,
-        height: 400,
+        width: '90%',
         padding: 20,
         marginBottom: 30,
         shadowColor: '#000',
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
         elevation: 3,
-        marginTop: 20,
-        marginBottom: 20,
-        borderWidth: 1,
+        alignSelf: 'center',
     },
     userInfo: {
         flexDirection: 'row',
@@ -81,8 +91,7 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         paddingBottom: 8,
         borderBottomWidth: 1,
-        borderBottomColor: '#black',
-        
+        borderBottomColor: '#000',
     },
     userAvatar: {
         width: 50,
@@ -90,34 +99,38 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         marginRight: 10,
         borderWidth: 2,
-        borderColor: '#black',
+        borderColor: '#000',
         backgroundColor: '#1a1a1a',
         justifyContent: 'center',
-       
-
-        
     },
     userName: {
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
     },
+    postHeader: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
+
+    },
     postType: {
         color: '#8e8e8e',
         fontSize: 14,
-        marginTop: 4,
-        fontStyle: 'italic', 
-        
-
+        fontStyle: 'italic',
     },
-    postContent: {
-        color: '#fff',
+    doubtText: {
+        color: '#8e8e8e',
         fontSize: 14,
-        marginTop: 8,
-        lineHeight: 20,
-        textAlign: 'justify',   
-
+        fontStyle: 'italic',
     },
+    activeText: {
+        color: '#6a0dad', 
+        fontWeight: 'bold',
+    },
+
     languageLabel: {
         color: '#fff',
         fontSize: 14,
@@ -134,8 +147,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 10,
         width: '100%',
-       
-       
     },
     publishButton: {
         backgroundColor: '#6a0dad',
@@ -145,7 +156,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 20,
         width: '100%',
-        
     },
     publishText: {
         color: '#fff',
@@ -155,4 +165,3 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
     },
 });
-
