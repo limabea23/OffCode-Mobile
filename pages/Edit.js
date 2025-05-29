@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import React,  { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
-import Conexoes from './components/Conexoes';
-import Especializacoes from './components/EspecializacoesE';
-import Bottom from './components/Button';
+import Conexoes from '../components/Conexoes';
+import Especializacoes from '../components/EspecializacoesE';
+import Bottom from '../components/Button';
 import * as ImagePicker from 'expo-image-picker';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
-export default function Edit() {
+export default function Edit({ navigation }) {
   const [capaUri, setCapaUri] = useState(null);
   const [profileUri, setProfileUri] = useState(null);
 
@@ -37,12 +37,12 @@ export default function Edit() {
         <TouchableOpacity style={styles.photo} onPress={() => handleImagePicker('capa')} >
         <Text style={styles.textoBotao}> Escolher imagem </Text>
         </TouchableOpacity>
-        <Image style={styles.capa} source={capaUri ? { uri: capaUri } : require('./assets/public/fotocapablur.png')} />
+        <Image style={styles.capa} source={capaUri ? { uri: capaUri } : require('../assets/public/fotocapablur.png')} />
         
         <TouchableOpacity style={styles.photo2} onPress={() => handleImagePicker('pic')} >
         <Text style={styles.textoBotao2}> Escolher imagem </Text>
         </TouchableOpacity>
-        <Image style={styles.pic} source={profileUri ? { uri: profileUri } : require('./assets/public/fotoprofileblur.png')} />
+        <Image style={styles.pic} source={profileUri ? { uri: profileUri } : require('../assets/public/fotoprofileblur.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
@@ -53,7 +53,7 @@ export default function Edit() {
         <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="Nome" />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
-            <TouchableOpacity style={styles.botao}>
+            <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('User')}>
               <Text style={styles.textoBotao}>Feito</Text>
             </TouchableOpacity>
         </View>
@@ -204,5 +204,6 @@ inputBio: {
   borderColor: '#8c52ff',
   borderWidth: 1, 
   left: 1,
+  color: '#fff',
 },
 });

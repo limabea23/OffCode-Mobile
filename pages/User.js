@@ -1,15 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView } from 'react-native';
-import Conexoes from './components/Conexoes';
-import Especializacoes from './components/Especializacoes';
+import Conexoes from '../components/Conexoes';
+import Especializacoes from '../components/Especializacoes';
 
-export default function User() {
+export default function User({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
       <View style={styles.header}>
-        <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
-        <Image style={styles.pic} source={require('./assets/public/fotoprofile.png')} />
+        <Image style={styles.capa} source={require('../assets/public/fotocapa.png')} />
+        <Image style={styles.pic} source={require('../assets/public/fotoprofile.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
@@ -17,7 +17,7 @@ export default function User() {
       <View style={styles.perfil}>
         <View style={styles.info}>
             <Text style={styles.p}>Nome</Text>
-            <TouchableOpacity style={styles.botao}>
+            <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Edit')}>
               <Text style={styles.textoBotao}>Editar perfil</Text>
             </TouchableOpacity>
         </View>
