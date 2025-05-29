@@ -9,7 +9,7 @@ export default function Noticias() {
     return (
         <View style={styles.container}>
             <Header />
-            <ScrollView contentContainerStyle={styles.content}>
+            <ScrollView contentContainerStyle={styles.scrollContent}>
                 <NewsSection />
                 <Card
                     userName={
@@ -19,6 +19,7 @@ export default function Noticias() {
                         </View>
                     }
                     content="Aqui vai o conteúdo do primeiro post ou notícia. Este é um exemplo de texto."
+                    style={styles.cardContainer}
                 />
                 <Card
                     userName={
@@ -28,6 +29,7 @@ export default function Noticias() {
                         </View>
                     }
                     content="Aqui vai o conteúdo do segundo post ou notícia. Este é um exemplo de texto."
+                    style={styles.cardContainer}
                 />
                 <Card
                     userName={
@@ -37,6 +39,7 @@ export default function Noticias() {
                         </View>
                     }
                     content="Aqui vai o conteúdo do terceiro post ou notícia. Este é um exemplo de texto."
+                    style={styles.cardContainer}
                 />
             </ScrollView>
         </View>
@@ -48,10 +51,11 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#000',
     },
-    content: {
+    scrollContent: {
         flexGrow: 1,
         paddingVertical: 16,
         paddingHorizontal: 16,
+        alignItems: 'center', 
     },
     userInfo: {
         flexDirection: 'row',
