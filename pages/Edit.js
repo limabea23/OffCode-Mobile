@@ -1,18 +1,48 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import Conexoes from './components/Conexoes';
-import Especializacoes from './components/Especializacoes';
-import Bottom from './components/Bottom';
+import Especializacoes from './components/EspecializacoesE';
+import Bottom from './components/Button';
+import * as ImagePicker from 'expo-image-picker';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
 export default function Edit() {
+  const [capaUri, setCapaUri] = useState(null);
+  const [profileUri, setProfileUri] = useState(null);
+
+  const handleImagePicker = async (type) => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      aspect: [4,4],
+      allowsEditing: true,
+      base64: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      if (type === 'capa') {
+        setCapaUri(result.assets[0].uri);
+      } else if (type === 'pic') {
+        setProfileUri(result.assets[0].uri);
+      }
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
       <View style={styles.header}>
-        <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
-        <Image style={styles.pic} source={require('./assets/public/fotoprofile.png')} />
+
+        <TouchableOpacity style={styles.photo} onPress={() => handleImagePicker('capa')} >
+        <Text style={styles.textoBotao}> Escolher imagem </Text>
+        </TouchableOpacity>
+        <Image style={styles.capa} source={capaUri ? { uri: capaUri } : require('./assets/public/fotocapablur.png')} />
+        
+        <TouchableOpacity style={styles.photo2} onPress={() => handleImagePicker('pic')} >
+        <Text style={styles.textoBotao2}> Escolher imagem </Text>
+        </TouchableOpacity>
+        <Image style={styles.pic} source={profileUri ? { uri: profileUri } : require('./assets/public/fotoprofileblur.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
@@ -24,7 +54,7 @@ export default function Edit() {
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
             <TouchableOpacity style={styles.botao}>
-              <Text style={styles.textoBotao}>Editar perfil</Text>
+              <Text style={styles.textoBotao}>Feito</Text>
             </TouchableOpacity>
         </View>
       </View>
@@ -41,13 +71,12 @@ export default function Edit() {
         </View>
 
         <Text style={styles.p}>Biografia</Text>
-        
         <View style={styles.pen}>
-        <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="Escreva aqui..." />
+        <TextInput style={styles.inputBio} placeholderTextColor="#fff" placeholder="Escreva aqui..." />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
 
-        <Conexoes />
+        <Conexoes seguindo="394" seguidores="3920" postagens="204" />
       </View>
 
       <View style={styles.linhaHorizontal} />
@@ -102,12 +131,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 180,
+    marginLeft: 130,
   },
   botao: {
     padding: 10,
     borderRadius: 10,
-    width: 100,
+    width: 80,
     height: 40,
     alignItems: 'center',
     backgroundColor: '#8c52ff',
@@ -116,6 +145,8 @@ const styles = StyleSheet.create({
   textoBotao: {
     color: '#fff',
     textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
   linhaHorizontal: {
     width: '100%', 
@@ -133,10 +164,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
 },
-  input: {
-    color: '#fff',
-    borderColor: '#8c52ff',
-    borderWidth: 1,  
+input: {
+    color: '#fff', 
     borderRadius: 5,
-  }
+    width: 100, 
+    height: 40, 
+    borderColor: '#8c52ff',
+    borderWidth: 1, 
+    left: 1,
+},
+photo: {
+  position: 'absolute',
+  top: 100,
+  right: 100,
+  padding: 10,
+  borderRadius: 20,
+  transform: [{ translateX: -50 }], 
+  zIndex: 2,
+},
+photo2: {
+  position: 'absolute',
+  top: 200,
+  left: 100,
+  padding: 10,
+  borderRadius: 20,
+  transform: [{ translateX: -50 }], 
+  zIndex: 2,
+},
+textoBotao2: {
+  right: 35,
+  color: '#fff',
+  fontSize: 10,
+  fontWeight: 'bold',
+},
+inputBio: {
+  borderRadius: 5,
+  width: 345, 
+  height: 100, 
+  borderColor: '#8c52ff',
+  borderWidth: 1, 
+  left: 1,
+},
 });

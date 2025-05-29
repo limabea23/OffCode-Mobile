@@ -26,8 +26,8 @@ const styles = StyleSheet.create ({
     icons: {
         display: 'flex',
         flexDirection: 'row',
-        marginTop: 5,
         alignItems: 'center',
+        gap: 20,
     },
     titulo: {
         fontSize: 15, 
