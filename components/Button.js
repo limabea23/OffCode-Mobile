@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginVertical: 10,
+        left: -4,
     },
     option: {
         paddingVertical: 10,

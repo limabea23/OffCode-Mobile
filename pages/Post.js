@@ -4,8 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { Picker } from '@react-native-picker/picker';
 import Toast from 'react-native-root-toast';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Post({ navigation }) {
+export default function Post() {
+    const navigation = useNavigation();
     const [selectedOption, setSelectedOption] = useState('post');
     const [postText, setPostText] = useState('');
     const [codeText, setCodeText] = useState('');
