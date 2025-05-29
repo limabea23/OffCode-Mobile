@@ -3,37 +3,40 @@ import { View, FlatList, SafeAreaView, StyleSheet, Text } from "react-native";
 import axios from "axios";
 
 export default function PostDetails() {
-  const [post, setPost] = useState(null);
-  const [usuarios, setUsuarios] = useState([]);
-  const [comentarios, setComentarios] = useState([]);
-  const [curtidas, setCurtidas] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [post, setPost] = useState(null); 
+  const [usuarios, setUsuarios] = useState([]); 
+  const [comentarios, setComentarios] = useState([]); 
+  const [curtidas, setCurtidas] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    setTimeout(() => {
-      // Puxa os dados do post
-      axios.get("https://localhost:3000/posts/1")
-        .then((res) => setPost(res.data))
-        .catch((err) => console.error("Erro ao buscar post:", err));
+    const fetchData = async () => {
+      try {
+        const postId = 1; // Substitua pelo ID do post ou dúvida
 
-        // Puxa os dados de comentários, curtidas e usuários relacionados ao post
-      axios.get("https://localhost:3000/posts/1/comentarios")
-        .then((res) => setComentarios(res.data))
-        .catch((err) => console.error("Erro ao buscar comentários:", err));
+        const [postRes, comentariosRes, curtidasRes, usuariosRes] =
+          await Promise.all([
+            axios.get(`https://localhost:3000/posts/${postId}`),
+            axios.get(`https://localhost:3000/posts/${postId}/comentarios`), 
+            axios.get(`https://localhost:3000/posts/${postId}/curtidas`), 
+            axios.get("https://localhost:3000/usuarios"), 
+            ]);
 
- 
-      axios.get("https://localhost:3000/posts/1/curtidas")
-        .then((res) => setCurtidas(res.data))
-        .catch((err) => console.error("Erro ao buscar curtidas:", err));
+        setPost(postRes.data);
+        setComentarios(comentariosRes.data);
+        setCurtidas(curtidasRes.data);
+        setUsuarios(usuariosRes.data);
+      } catch (err) {
+        console.error("Erro ao buscar dados:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-     
-      axios.get("https://localhost:3000/posts/1/curtidas")
-        .then((res) => setUsuarios(res.data))
-        .catch((err) => console.error("Erro ao buscar usuários:", err))
-        .finally(() => setLoading(false));
-    }, 2000); 
+    fetchData();
   }, []);
 
+  
   const SkeletonCard = () => (
     <View style={styles.skeleton} />
   );
@@ -59,11 +62,13 @@ export default function PostDetails() {
     </View>
   );
 
+  
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>📄 Detalhes do Post</Text>
 
       {loading ? (
+     
         <FlatList
           data={[1, 2, 3, 4, 5]}
           keyExtractor={(item) => item.toString()}
@@ -72,14 +77,15 @@ export default function PostDetails() {
         />
       ) : (
         <View>
+          
           {post && (
             <View style={styles.postContainer}>
               <Text style={styles.postTitle}>{post.titulo}</Text>
               <Text style={styles.postContent}>{post.conteudo}</Text>
             </View>
           )}
-        
 
+       
           <Text style={styles.sectionHeader}>💬 Comentários</Text>
           <FlatList
             data={comentarios}
@@ -88,6 +94,7 @@ export default function PostDetails() {
             contentContainerStyle={styles.list}
           />
 
+         
           <Text style={styles.sectionHeader}>👍 Curtidas</Text>
           <FlatList
             data={curtidas}
@@ -95,6 +102,7 @@ export default function PostDetails() {
             renderItem={({ item }) => <CurtidaCard curtida={item} />}
             contentContainerStyle={styles.list}
           />
+
 
           <Text style={styles.sectionHeader}>👤 Usuários</Text>
           <FlatList
@@ -148,6 +156,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "#ffffff",
+  },
+  email: {
+    fontSize: 14,
+    color: "#aaaaaa",
   },
   text: {
     fontSize: 14,
