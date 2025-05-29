@@ -1,14 +1,14 @@
 import React from "react"; 
 import { createNativeStackNavigator } from "@react-navigation/native-stack"; 
-import User from "../pages/User"; 
 import Edit from "../pages/Edit"; 
+import TabNavigator from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
     return (
-        <Stack.Navigator initialRouteName="User" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="User" component={User} /> 
+        <Stack.Navigator initialRouteName="TabNavigator" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
             <Stack.Screen name="Edit" component={Edit} />
         </Stack.Navigator>
     );
