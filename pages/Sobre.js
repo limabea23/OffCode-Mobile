@@ -5,19 +5,19 @@ import Carousel from "react-native-reanimated-carousel";
 export default function Sobre() { 
 
   const data = [
-  { id: 1, image: require('./assets/public/teste.png') },
-  { id: 2, image: require('./assets/public/teste.png') },
-  { id: 3, image: require('./assets/public/teste.png') },
-  { id: 4, image: require('./assets/public/teste.png') },
-  { id: 5, image: require('./assets/public/teste.png') },
-  { id: 6, image: require('./assets/public/teste.png') },
+  { id: 1, image: require('../assets/public/anacarolina.png') },
+  { id: 2, image: require('../assets/public/anajulia.png') },
+  { id: 3, image: require('../assets/public/beatriz.png') },
+  { id: 4, image: require('../assets/public/teste.png') },
+  { id: 5, image: require('../assets/public/caio.png') },
+  { id: 6, image: require('../assets/public/luana.png') },
 ];  
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
       <View style={styles.header}>
-        <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
+        <Image style={styles.capa} source={require('../assets/public/fotocapa.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
@@ -82,10 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     marginTop: 15,
-  },
-  carrossel: {
-    marginTop: 20,
-    alignItems: 'center',
+    left: 5,
   },
   conteudo: {
     flexDirection: 'row',
@@ -93,10 +90,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageContainer: {
-    width: 500,
-    height: 500,
     justifyContent: 'center',
     alignItems: 'center',
+    right: 60,
   },
   image: {
     width: '100%',
