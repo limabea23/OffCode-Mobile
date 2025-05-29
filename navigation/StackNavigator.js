@@ -1,21 +1,19 @@
-import React from "react"; 
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"; 
+import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet } from "react-native";
-import Duvidas from "../pages/Duvidas";
-import Noticias from "../pages/Noticias";
+import User from "../pages/User"; 
+import Edit from "../pages/Edit"; 
 import Post from "../pages/Post";
-import User from "../pages/User";
-import Sobre from "../pages/Sobre";
-import Edit from "../pages/Edit";
+import Noticias from "../pages/Noticias";
 
-const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
     return (
-        <Tab.Navigator
-            initialRouteName="Noticias"
-            screenOptions={{
-                
-            }
+        <Stack.Navigator initialRouteName="Post" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="User" component={User} /> 
+            <Stack.Screen name="Edit" component={Edit} />
+            <Stack.Screen name="Post" component={Post} />
+            <Stack.Screen name="Noticias" component={Noticias} />
+        </Stack.Navigator>
+    );
+}
