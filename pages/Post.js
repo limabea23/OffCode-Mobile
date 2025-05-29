@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     backButton: {
-        marginBottom: 16,
+        marginTop: 20, 
         padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
@@ -279,20 +279,19 @@ const styles = StyleSheet.create({
     languageContainer: {
         marginBottom: 20,
     },
-    languageLabel: {
-        color: 'black',
-        fontSize: 14,
-        marginBottom: 8,
-        textAlign: 'left',
-        fontWeight: 'bold',
-    },
     languagePicker: {
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#fff', 
         borderRadius: 8,
+        width: '100%', 
+        paddingHorizontal: 10,
+        marginTop: 10,
+        borderWidth: 1,
+        borderColor: '#6a0dad', 
+        justifyContent: 'center', 
     },
     languageInput: {
         height: 40,
-        color: '#555',
+        color: '#000', 
     },
     publishButton: {
         backgroundColor: '#6a0dad',
