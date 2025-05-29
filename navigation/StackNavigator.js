@@ -1,19 +1,15 @@
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import User from "../pages/User"; 
+import React from "react"; 
+import { createNativeStackNavigator } from "@react-navigation/native-stack"; 
 import Edit from "../pages/Edit"; 
-import Post from "../pages/Post";
-import Noticias from "../pages/Noticias";
+import TabNavigator from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigator() {
     return (
-        <Stack.Navigator initialRouteName="Post" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="User" component={User} /> 
+        <Stack.Navigator initialRouteName="TabNavigator" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
             <Stack.Screen name="Edit" component={Edit} />
-            <Stack.Screen name="Post" component={Post} />
-            <Stack.Screen name="Noticias" component={Noticias} />
         </Stack.Navigator>
     );
 }

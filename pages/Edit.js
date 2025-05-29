@@ -53,7 +53,7 @@ export default function Edit({ navigation }) {
         <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="Nome" />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
-            <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('User')}>
+            <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('TabNavigator', { screen: 'User' })}>
               <Text style={styles.textoBotao}>Feito</Text>
             </TouchableOpacity>
         </View>
