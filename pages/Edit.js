@@ -1,17 +1,37 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native';
 import Conexoes from './components/Conexoes';
 import Especializacoes from './components/EspecializacoesE';
 import Bottom from './components/Button';
+import * as ImagePicker from 'expo-image-picker';
 
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
 export default function Edit() {
+  const handleImagePicker = async  () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      aspect: [4,4],
+      allowsEditing: true,
+      base64: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      console.log(result.assets[0].uri)
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
       <View style={styles.header}>
+
+        <TouchableOpacity style={styles.photo} onPress={handleImagePicker} >
+        <Text> Escolher imagem </Text>
+        </TouchableOpacity>
         <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
+
         <Image style={styles.pic} source={require('./assets/public/fotoprofile.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
@@ -133,10 +153,20 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
 },
-  input: {
+input: {
     color: '#fff', 
     borderRadius: 5,
     width: 100, 
     height: 40, 
-  }
+},
+photo: {
+  position: 'absolute',
+  top: 100,
+  right: 100,
+  backgroundColor: '#8c52ff',
+  padding: 10,
+  borderRadius: 20,
+  transform: [{ translateX: -50 }], 
+  zIndex: 2,
+},
 });
