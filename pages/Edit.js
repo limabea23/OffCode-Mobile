@@ -9,7 +9,10 @@ import * as ImagePicker from 'expo-image-picker';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
 export default function Edit() {
-  const handleImagePicker = async  () => {
+  const [capaUri, setCapaUri] = useState(null);
+  const [profileUri, setProfileUri] = useState(null);
+
+  const handleImagePicker = async (type) => {
     const result = await ImagePicker.launchImageLibraryAsync({
       aspect: [4,4],
       allowsEditing: true,
@@ -18,7 +21,11 @@ export default function Edit() {
     });
 
     if (!result.canceled) {
-      console.log(result.assets[0].uri)
+      if (type === 'capa') {
+        setCapaUri(result.assets[0].uri);
+      } else if (type === 'pic') {
+        setProfileUri(result.assets[0].uri);
+      }
     }
   };
 
@@ -27,12 +34,15 @@ export default function Edit() {
       <ScrollView>
       <View style={styles.header}>
 
-        <TouchableOpacity style={styles.photo} onPress={handleImagePicker} >
-        <Text> Escolher imagem </Text>
+        <TouchableOpacity style={styles.photo} onPress={() => handleImagePicker('capa')} >
+        <Text style={styles.textoBotao}> Escolher imagem </Text>
         </TouchableOpacity>
-        <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
-
-        <Image style={styles.pic} source={require('./assets/public/fotoprofile.png')} />
+        <Image style={styles.capa} source={capaUri ? { uri: capaUri } : require('./assets/public/fotocapablur.png')} />
+        
+        <TouchableOpacity style={styles.photo2} onPress={() => handleImagePicker('pic')} >
+        <Text style={styles.textoBotao2}> Escolher imagem </Text>
+        </TouchableOpacity>
+        <Image style={styles.pic} source={profileUri ? { uri: profileUri } : require('./assets/public/fotoprofileblur.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
@@ -136,6 +146,8 @@ const styles = StyleSheet.create({
   textoBotao: {
     color: '#fff',
     textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
   linhaHorizontal: {
     width: '100%', 
@@ -158,15 +170,31 @@ input: {
     borderRadius: 5,
     width: 100, 
     height: 40, 
+    borderColor: '#8c52ff',
+    borderWidth: 1, 
 },
 photo: {
   position: 'absolute',
   top: 100,
   right: 100,
-  backgroundColor: '#8c52ff',
   padding: 10,
   borderRadius: 20,
   transform: [{ translateX: -50 }], 
   zIndex: 2,
+},
+photo2: {
+  position: 'absolute',
+  top: 200,
+  left: 100,
+  padding: 10,
+  borderRadius: 20,
+  transform: [{ translateX: -50 }], 
+  zIndex: 2,
+},
+textoBotao2: {
+  right: 35,
+  color: '#fff',
+  fontSize: 10,
+  fontWeight: 'bold',
 },
 });
