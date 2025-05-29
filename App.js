@@ -8,7 +8,7 @@ import Post from './pages/Post';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Noticias />
+      <Duvidas />
       <StatusBar style="light" />
     </View>
   );
