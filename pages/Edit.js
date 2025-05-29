@@ -71,9 +71,8 @@ export default function Edit() {
         </View>
 
         <Text style={styles.p}>Biografia</Text>
-        
         <View style={styles.pen}>
-        <TextInput style={styles.input} placeholderTextColor="#fff" placeholder="Escreva aqui..." />
+        <TextInput style={styles.inputBio} placeholderTextColor="#fff" placeholder="Escreva aqui..." />
         <EvilIcons name="pencil" size={20} color="white" />
         </View>
 
@@ -172,6 +171,7 @@ input: {
     height: 40, 
     borderColor: '#8c52ff',
     borderWidth: 1, 
+    left: 1,
 },
 photo: {
   position: 'absolute',
@@ -196,5 +196,13 @@ textoBotao2: {
   color: '#fff',
   fontSize: 10,
   fontWeight: 'bold',
+},
+inputBio: {
+  borderRadius: 5,
+  width: 345, 
+  height: 100, 
+  borderColor: '#8c52ff',
+  borderWidth: 1, 
+  left: 1,
 },
 });
