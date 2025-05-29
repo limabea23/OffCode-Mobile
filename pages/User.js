@@ -109,4 +109,10 @@ const styles = StyleSheet.create({
   flexDirection: 'row',
   alignItems: 'center',
 },
+textoBotao: {
+  color: '#fff',
+  textAlign: 'center',
+  fontWeight: 'bold',
+  fontSize: 15,
+},
 });
