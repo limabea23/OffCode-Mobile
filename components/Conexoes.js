@@ -4,14 +4,24 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function Conexoes({seguindo, seguidores, postagens}) {
     return (
         <View style={styles.card}>
-            <Text style={styles.p}>SEGUINDO</Text>
-            <Text style={styles.seguindo}>{seguindo}</Text>
-            <View style={styles.linhaVertical} />
-            <Text style={styles.p}>SEGUIDORES</Text>
-            <Text style={styles.seguidores}>{seguidores}</Text>
-            <View style={styles.linhaVertical} />
-            <Text style={styles.p}>POSTAGENS</Text>
-            <Text style={styles.postagens}>{postagens}</Text>
+                    <View style={styles.coluna}>
+                        <Text style={styles.p}>SEGUINDO</Text>
+                        <Text style={styles.number}>{seguindo}</Text>
+                    </View>
+
+                    <View style={styles.linhaVertical} />
+
+                    <View style={styles.coluna}>
+                        <Text style={styles.p}>SEGUIDORES</Text>
+                        <Text style={styles.number}>{seguidores}</Text>
+                    </View>
+        
+                    <View style={styles.linhaVertical} />
+
+                    <View style={styles.coluna}>
+                        <Text style={styles.p}>POSTAGENS</Text>
+                        <Text style={styles.number}>{postagens}</Text>
+                    </View>
         </View>
     );
 }
@@ -36,9 +46,16 @@ const styles = StyleSheet.create ({
     },
     linhaVertical: {
         width: 1, 
-        height: 50,
+        height: 60,
         backgroundColor: '#fff', 
         alignSelf: 'center', 
         marginTop: 5, 
+    },
+    number: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 25,
+        margin: 20,
+        marginTop: 2,
     },
 })
