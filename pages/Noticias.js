@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import NewsSection from '../components/NewsSection';
 import Card from '../components/Card';
 
-// Lista de usuários exemplo
 const usuarios = [
     { nome: 'Ana Silva' },
     { nome: 'Bruno Souza' },
