@@ -1,15 +1,54 @@
 // Página principal de notícias
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import Header from '../components/Header';
 import NewsSection from '../components/NewsSection';
 import Card from '../components/Card';
 
+// Lista de usuários exemplo
+const usuarios = [
+    { nome: 'Ana Silva' },
+    { nome: 'Bruno Souza' },
+    { nome: 'Carlos Oliveira' },
+    { nome: 'Daniela Lima' },
+    { nome: 'Eduardo Santos' },
+];
+
 export default function Noticias() {
+    const [busca, setBusca] = useState('');
+    const [resultados, setResultados] = useState(usuarios);
+
+    const handleBusca = (texto) => {
+        setBusca(texto);
+        if (texto.trim() === '') {
+            setResultados(usuarios);
+        } else {
+            setResultados(
+                usuarios.filter(u =>
+                    u.nome.toLowerCase().includes(texto.toLowerCase())
+                )
+            );
+        }
+    };
+
     return (
         <View style={styles.container}>
-            <Header />
+            <Header busca={busca} onBuscaChange={handleBusca} />
             <ScrollView contentContainerStyle={styles.scrollContent}>
+                {/* Resultados da busca */}
+                {busca.length > 0 && (
+                    <View style={styles.resultadosBox}>
+                        {resultados.length > 0 ? (
+                            resultados.map((usuario, idx) => (
+                                <View key={idx} style={styles.resultadoItem}>
+                                    <Text style={styles.resultadoNome}>{usuario.nome}</Text>
+                                </View>
+                            ))
+                        ) : (
+                            <Text style={styles.resultadoNome}>Nenhum usuário encontrado.</Text>
+                        )}
+                    </View>
+                )}
                 <NewsSection />
                 <Card
                     userName={
@@ -56,6 +95,21 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 16,
         alignItems: 'center', 
+    },
+    resultadosBox: {
+        width: '90%',
+        alignSelf: 'center',
+        marginBottom: 10,
+    },
+    resultadoItem: {
+        backgroundColor: '#eee',
+        borderRadius: 8,
+        padding: 10,
+        marginVertical: 4,
+    },
+    resultadoNome: {
+        color: '#222',
+        fontSize: 16,
     },
     userInfo: {
         flexDirection: 'row',
