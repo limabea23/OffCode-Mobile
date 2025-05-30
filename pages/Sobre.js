@@ -1,13 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, View, Image, ScrollView } from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import Carousel from "react-native-reanimated-carousel";
 
-export default function App() {
+export default function Sobre() { 
+
+  const data = [
+  { id: 1, image: require('../assets/public/anacarolina.png') },
+  { id: 2, image: require('../assets/public/anajulia.png') },
+  { id: 3, image: require('../assets/public/beatriz.png') },
+  { id: 4, image: require('../assets/public/teste.png') },
+  { id: 5, image: require('../assets/public/caio.png') },
+  { id: 6, image: require('../assets/public/luana.png') },
+];  
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
       <View style={styles.header}>
-        <Image style={styles.capa} source={require('./assets/public/fotocapa.png')} />
+        <Image style={styles.capa} source={require('../assets/public/fotocapa.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
@@ -16,16 +26,17 @@ export default function App() {
         <Text style={styles.p}>Nosso time de desenvolvedores une talento e inovação para transformar ideias em soluções digitais eficientes.</Text>
       </View>
 
-      <View style={styles.carrossel}>
-        <View style={styles.conteudo}>
-          <AntDesign name="left" size={24} color="white" />
-          <Image style={styles.pic} source={require('./assets/public/teste.png')} />
-          <AntDesign name="right" size={24} color="white" />
-        </View>
-      </View>
-
-      <View style={styles.example}>
-        
+      <View style={styles.carouselContainer}> 
+        <Carousel
+          width={500}
+          height={500}
+          data={data}
+          renderItem={({ item }) => (
+            <View style={styles.imageContainer}>
+              <Image source={item.image} style={styles.image} />
+            </View>
+          )}
+          />
       </View>
 
       </ScrollView>
@@ -52,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   capa: {
-    width: 400,
+    width: 500,
     height: 200,
   },
   linhaHorizontal: {
@@ -71,14 +82,21 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     marginTop: 15,
-  },
-  carrossel: {
-    marginTop: 20,
-    alignItems: 'center',
+    left: 5,
   },
   conteudo: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: 60,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
   },
 });
