@@ -86,7 +86,6 @@ export default function Noticias() {
               <NewsSection />
 
               {posts.map((post, idx) => {
-                console.log("Conteúdo do post:", post.conteudo_post);
                 return (
                   <Card
                     key={post.id_post ?? idx}
@@ -100,6 +99,7 @@ export default function Noticias() {
                       </View>
                     }
                     content={post.conteudo_post}
+                    likes={Number(post.quantidade_curtidas)} 
                   />
                 );
               })}

@@ -3,14 +3,13 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Card({ header, content }) {
+export default function Card({ header, content, likes: likesProp }) {
   const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(205);
+  const [likes, setLikes] = useState(likesProp); 
   const [saved, setSaved] = useState(false);
-  const [saves, setSaves] = useState(99);
+  const [saves, setSaves] = useState(1); 
   const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState('');
-  const [commentsCount, setCommentsCount] = useState(100);
 
   function handleLike() {
     setLiked(!liked);
@@ -24,7 +23,6 @@ export default function Card({ header, content }) {
 
   function handleCommentSend() {
     if (comment.trim() !== '') {
-      setCommentsCount(commentsCount + 1);
       setComment('');
       setShowComment(false);
     }
@@ -41,7 +39,6 @@ export default function Card({ header, content }) {
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={() => setShowComment(!showComment)}>
           <Ionicons name="chatbubble-outline" size={20} color="#333" />
-          <Text style={styles.iconText}>{commentsCount}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={handleSave}>
           <Ionicons name={saved ? "bookmark" : "bookmark-outline"} size={20} color={saved ? "#8000ff" : "#333"} />
