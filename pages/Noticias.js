@@ -1,86 +1,112 @@
-// Página principal de notícias
-import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, ScrollView, Text, ActivityIndicator, Alert, Image } from 'react-native';
+import axios from 'axios';
 import Header from '../components/Header';
 import NewsSection from '../components/NewsSection';
 import Card from '../components/Card';
-
-const usuarios = [
-    { nome: 'Ana Silva' },
-    { nome: 'Bruno Souza' },
-    { nome: 'Carlos Oliveira' },
-    { nome: 'Daniela Lima' },
-    { nome: 'Eduardo Santos' },
-];
+import Constants from 'expo-constants';
 
 export default function Noticias() {
     const [busca, setBusca] = useState('');
-    const [resultados, setResultados] = useState(usuarios);
+    const [resultados, setResultados] = useState([]);
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const { apiUrl, apiImg, apiKey } = Constants.expoConfig.extra;
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
+
+    const fetchPosts = async () => {
+        try {
+            const response = await axios.get(
+                `${apiUrl}posts`, {
+                headers: { 'x-api-key': apiKey }
+            });
+            setPosts(response.data);
+            setResultados(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar posts:', error);
+            Alert.alert('Erro', 'Erro ao carregar os posts.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const handleBusca = (texto) => {
         setBusca(texto);
         if (texto.trim() === '') {
-            setResultados(usuarios);
+            setResultados(posts);
         } else {
             setResultados(
-                usuarios.filter(u =>
-                    u.nome.toLowerCase().includes(texto.toLowerCase())
+                posts.filter(p =>
+                    p.conteudo_post.toLowerCase().includes(texto.toLowerCase()) ||
+                    p.usuario_nome.toLowerCase().includes(texto.toLowerCase())
                 )
             );
         }
     };
 
+    const getUserImage = (foto_perfil) => {
+        if (!foto_perfil || foto_perfil.trim().toLowerCase() === 'null') {
+            return require('../assets/public/default-profile.png');
+        }
+        return { uri: `${apiImg}/${foto_perfil}` };
+    };
+
     return (
-        <View style={styles.container}>
-            <Header busca={busca} onBuscaChange={handleBusca} />
-            <ScrollView contentContainerStyle={styles.scrollContent}>
-                {/* Resultados da busca */}
-                {busca.length > 0 && (
-                    <View style={styles.resultadosBox}>
-                        {resultados.length > 0 ? (
-                            resultados.map((usuario, idx) => (
-                                <View key={idx} style={styles.resultadoItem}>
-                                    <Text style={styles.resultadoNome}>{usuario.nome}</Text>
-                                </View>
-                            ))
-                        ) : (
-                            <Text style={styles.resultadoNome}>Nenhum usuário encontrado.</Text>
-                        )}
-                    </View>
-                )}
-                <NewsSection />
-                <Card
-                    userName={
-                        <View style={styles.userInfo}>
-                            <View style={styles.userCircle} />
-                            <Text style={styles.userName}>NOME USUÁRIO</Text>
-                        </View>
+      <View style={styles.container}>
+        <Header busca={busca} onBuscaChange={handleBusca} />
+        <ScrollView contentContainerStyle={styles.scrollContent}>
+          {loading ? (
+            <ActivityIndicator size="large" color="#fff" />
+          ) : (
+            <>
+              {busca.length > 0 && (
+                <View style={styles.resultadosBox}>
+                  {resultados.length > 0 ? (
+                    resultados.map((post, idx) => (
+                      <View
+                        key={post.id_post ?? idx}
+                        style={styles.resultadoItem}
+                      >
+                        <Text style={styles.resultadoNome}>
+                          {post.usuario_nome} - {post.conteudo_post}
+                        </Text>
+                      </View>
+                    ))
+                  ) : (
+                    <Text style={styles.resultadoNome}>
+                      Nenhum post encontrado.
+                    </Text>
+                  )}
+                </View>
+              )}
+
+              <NewsSection />
+
+              {posts.map((post, idx) => {
+                console.log("Conteúdo do post:", post.conteudo_post);
+                return (
+                  <Card
+                    key={post.id_post ?? idx}
+                    header={
+                      <View style={styles.userInfo}>
+                        <Image
+                          source={getUserImage(post.foto_perfil)}
+                          style={styles.userImage}
+                        />
+                        <Text style={styles.userName}>{post.usuario_nome}</Text>
+                      </View>
                     }
-                    content="Aqui vai o conteúdo do primeiro post ou notícia. Este é um exemplo de texto."
-                    style={styles.cardContainer}
-                />
-                <Card
-                    userName={
-                        <View style={styles.userInfo}>
-                            <View style={styles.userCircle} />
-                            <Text style={styles.userName}>NOME USUÁRIO</Text>
-                        </View>
-                    }
-                    content="Aqui vai o conteúdo do segundo post ou notícia. Este é um exemplo de texto."
-                    style={styles.cardContainer}
-                />
-                <Card
-                    userName={
-                        <View style={styles.userInfo}>
-                            <View style={styles.userCircle} />
-                            <Text style={styles.userName}>NOME USUÁRIO</Text>
-                        </View>
-                    }
-                    content="Aqui vai o conteúdo do terceiro post ou notícia. Este é um exemplo de texto."
-                    style={styles.cardContainer}
-                />
-            </ScrollView>
-        </View>
+                    content={post.conteudo_post}
+                  />
+                );
+              })}
+            </>
+          )}
+        </ScrollView>
+      </View>
     );
 }
 
@@ -93,7 +119,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         paddingVertical: 16,
         paddingHorizontal: 16,
-        alignItems: 'center', 
+        // alignItems: 'center',
     },
     resultadosBox: {
         width: '90%',
@@ -115,7 +141,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 8,
     },
-    userCircle: {
+    userImage: {
         width: 50,
         height: 50,
         borderRadius: 25,

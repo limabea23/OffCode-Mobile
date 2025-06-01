@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Card({ userName, content }) {
+export default function Card({ header, content }) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(205);
   const [saved, setSaved] = useState(false);
@@ -32,7 +32,7 @@ export default function Card({ userName, content }) {
 
   return (
     <View style={styles.card}>
-      <Text style={styles.cardTitle}>{userName}</Text>
+      {header}
       <Text style={styles.cardContent}>{content}</Text>
       <View style={styles.cardFooter}>
         <TouchableOpacity style={styles.iconButton} onPress={handleLike}>
@@ -62,6 +62,8 @@ export default function Card({ userName, content }) {
     </View>
   );
 }
+
+
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#ffffff',
@@ -73,6 +75,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 3,
+        width: '90%',
+        alignSelf: 'center',
     },
     cardTitle: {
         fontWeight: 'bold',
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
     },
     cardContent: {
         fontSize: 14,
-        color: '#555',
+        color: '#000',
         marginBottom: 20,
         lineHeight: 20,
         textAlign: 'justify',
