@@ -3,8 +3,8 @@
 
 
 "extra": {
-      "apiUrl": "http://*192.168.0.198*:3000/api/",
-      "apiImg": "http://*192.168.0.198*:3000/uploads/",
+      "apiUrl": "http://{ip da máquina}:3000/api/",
+      "apiImg": "http://{ip da máquina}:3000/uploads/",
       "apiKey": "..."
     },
 
