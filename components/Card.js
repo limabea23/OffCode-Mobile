@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Card({ header, content, likes: likesProp }) {
+export default function Card({ header, content, anexos, likes: likesProp }) {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(likesProp); 
   const [saved, setSaved] = useState(false);
@@ -29,10 +29,13 @@ export default function Card({ header, content, likes: likesProp }) {
   }
 
   return (
-    <View style={styles.card}>
-      {header}
-      <Text style={styles.cardContent}>{content}</Text>
-      <View style={styles.cardFooter}>
+  <View style={styles.card}>
+    {header}
+    <Text style={styles.cardContent}>
+      {content}
+    </Text>
+    {anexos}
+    <View style={styles.cardFooter}>
         <TouchableOpacity style={styles.iconButton} onPress={handleLike}>
           <Ionicons name="heart-outline" size={20} color={liked ? '#8000ff' : '#333'} />
           <Text style={[styles.iconText, liked && { color: '#8000ff' }]}>{likes}</Text>
