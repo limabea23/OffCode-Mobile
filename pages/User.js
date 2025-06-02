@@ -34,7 +34,7 @@ export default function User({ navigation }) {
 
       <Especializacoes />
       </ScrollView>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     alignItems: 'center',
     marginLeft: 5,
+    marginBottom: 5,
   },
   pco: {
     color: '#8c52ff',
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     height: 220,
   },
   capa: {
-    width: 400,
+    width: 370,
     height: 200,
   },
   pic: {

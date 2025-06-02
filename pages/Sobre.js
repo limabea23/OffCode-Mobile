@@ -15,12 +15,12 @@ export default function Sobre() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
       <View style={styles.header}>
         <Image style={styles.capa} source={require('../assets/public/fotocapa.png')} />
         <View style={styles.linhaHorizontal} />
       </View>
 
+      <ScrollView>
       <View style={styles.card}>
         <Text style={styles.h1}>Conheça Quem Está por Trás do Código</Text>
         <Text style={styles.p}>Nosso time de desenvolvedores une talento e inovação para transformar ideias em soluções digitais eficientes.</Text>
@@ -40,7 +40,7 @@ export default function Sobre() {
       </View>
 
       </ScrollView>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </SafeAreaView>
   );
 }
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   capa: {
-    width: 500,
+    width: 370,
     height: 200,
   },
   linhaHorizontal: {
@@ -72,6 +72,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff', 
     alignSelf: 'center', 
     marginTop: 5, 
+  },
+  header: {
+    width: '100%', 
+    position: 'relative',
+    height: 220,
   },
   card: {
     backgroundColor: '#382166', 
