@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     alignItems: 'center',
     marginLeft: 5,
+    marginBottom: 5,
   },
   pco: {
     color: '#8c52ff',
