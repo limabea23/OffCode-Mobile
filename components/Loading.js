@@ -4,7 +4,7 @@ import { StyleSheet, Text, Image, View } from 'react-native';
 export default function Loading() {
     return (
     <View style={styles.container}>
-        <Image style={styles.image} source={require('./assets/public/on-off.gif')} />
+        <Image style={styles.image} source={require('../assets/public/on-off.gif')} />
         <Text style={styles.text}>Carregando...</Text>
         <StatusBar style="auto" />
     </View>
