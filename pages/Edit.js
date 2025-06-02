@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     height: 220,
   },
   capa: {
-    width: 400,
+    width: 370,
     height: 200,
   },
   pic: {
