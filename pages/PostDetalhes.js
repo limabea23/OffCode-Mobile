@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+  Button,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ScrollView } from "react-native";
 import axios from "axios";
-import Constants from 'expo-constants';
-
+import Constants from "expo-constants";
 
 export default function PostDetalhes() {
   const route = useRoute();
@@ -40,98 +47,115 @@ export default function PostDetalhes() {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}posts/${post.id_post}/comments`, {
+      .get(`${apiUrl}comments/user/${post.id_post}`, {
         headers: { "x-api-key": apiKey },
       })
-      .then((response) => setComments(response.data));
-  }, []);
+      .then((response) => {
+      setComments(Array.isArray(response.data) ? response.data : []);
+    })
+    .catch((error) => console.log("Erro ao buscar comentários:", error));
+}, []);
 
   return (
     <ScrollView style={styles.container}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()} >
-            <MaterialCommunityIcons name="arrow-left-circle" size={36} color="#8000ff" />
+      <TouchableOpacity
+        style={styles.backButton}
+        onPress={() => navigation.goBack()}
+      >
+        <MaterialCommunityIcons
+          name="arrow-left-circle"
+          size={36}
+          color="#8000ff"
+        />
+      </TouchableOpacity>
+      <View style={styles.containerPost}>
+        <View style={styles.header}>
+          <Image
+            source={
+              !post.foto_perfil ||
+              post.foto_perfil.trim().toLowerCase() === "null"
+                ? require("../assets/public/default-profile.png")
+                : { uri: `${apiImg}/${post.foto_perfil}` }
+            }
+            style={styles.userImage}
+          />
+          <Text style={styles.userName}>{post.usuario_nome}</Text>
+        </View>
+        <Text style={styles.content}>{post.conteudo_post}</Text>
+
+        {post.anexo && post.anexo !== "null" && (
+          <Image
+            source={{ uri: `${apiImg}/${post.anexo}` }}
+            style={styles.anexoImage}
+            resizeMode="cover"
+          />
+        )}
+        <View style={styles.cardFooter}>
+          <TouchableOpacity style={styles.iconButton} onPress={handleLike}>
+            <Ionicons
+              name="heart-outline"
+              size={20}
+              color={liked ? "#8000ff" : "#fff"}
+            />
+            <Text style={[styles.iconText, liked && { color: "#8000ff" }]}>
+              {likes}
+            </Text>
           </TouchableOpacity>
-          <View style={styles.containerPost}>
-      <View style={styles.header}>
-        <Image
-          source={
-            !post.foto_perfil ||
-            post.foto_perfil.trim().toLowerCase() === "null"
-              ? require("../assets/public/default-profile.png")
-              : { uri: `${apiImg}/${post.foto_perfil}` }
-          }
-          style={styles.userImage}
-        />
-        <Text style={styles.userName}>{post.usuario_nome}</Text>
-      </View>
-      <Text style={styles.content}>{post.conteudo_post}</Text>
-
-      {post.anexo && post.anexo !== "null" && (
-        <Image
-          source={{ uri: `${apiImg}/${post.anexo}` }}
-          style={styles.anexoImage}
-          resizeMode="cover"
-        />
-      )}
-      <View style={styles.cardFooter}>
-        <TouchableOpacity style={styles.iconButton} onPress={handleLike}>
-          <Ionicons
-            name="heart-outline"
-            size={20}
-            color={liked ? "#8000ff" : "#fff"}
-          />
-          <Text style={[styles.iconText, liked && { color: "#8000ff" }]}>
-            {likes}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.iconButton}
-          onPress={() => setShowComment(!showComment)}
-        >
-          <Ionicons name="chatbubble-outline" size={20} color="#fff" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton} onPress={handleSave}>
-          <Ionicons
-            name={saved ? "bookmark" : "bookmark-outline"}
-            size={20}
-            color={saved ? "#8000ff" : "#fff"}
-          />
-          <Text style={[styles.iconText, saved && { color: "#8000ff" }]}>
-            {saves}
-          </Text>
-        </TouchableOpacity>
-      </View>
-      {showComment && (
-        <View>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => setShowComment(!showComment)}
+          >
+            <Ionicons name="chatbubble-outline" size={20} color="#fff" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton} onPress={handleSave}>
+            <Ionicons
+              name={saved ? "bookmark" : "bookmark-outline"}
+              size={20}
+              color={saved ? "#8000ff" : "#fff"}
+            />
+            <Text style={[styles.iconText, saved && { color: "#8000ff" }]}>
+              {saves}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        {showComment && (
           <View style={styles.commentBox}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Digite seu comentário..."
-                        value={comment}
-                        onChangeText={setComment}
-                    />
-                    <Button
-                        title="Enviar"
-                        onPress={handleCommentSend}
-                        color="#8000ff"
-                    />
-                </View>
-
-          <View style={styles.commentsContainer}>
-            {comments.map((comment) => (
-              <View key={comment.id} style={styles.comment}>
-                <Text style={styles.commentUser}>{comment.usuario_nome}</Text>
-                <Text style={styles.commentContent}>
-                  {comment.conteudo_comentario}
-                </Text>
-              </View>
-            ))}
+            <TextInput
+              style={styles.input}
+              placeholder="Digite seu comentário..."
+              value={comment}
+              onChangeText={setComment}
+            />
+            <Button
+              title="Enviar"
+              onPress={handleCommentSend}
+              color="#8000ff"
+            />
           </View>
-        </View>
-      )}
-        </View>
+        )}
+        <View style={styles.commentsContainer}>
+  {(Array.isArray(comments) ? comments : []).map((comentario) => (
+    <View key={comentario.id_comentario || comentario.id } style={styles.comment}>
+      <View style={styles.header}>
+      <Image
+            source={
+              !post.foto_perfil ||
+              post.foto_perfil.trim().toLowerCase() === "null"
+                ? require("../assets/public/default-profile.png")
+                : { uri: `${apiImg}/${post.foto_perfil}` }
+            }
+            style={styles.userImage}
+          />
+          <Text style={styles.usernameComment}>{post.usuario_nome}</Text>
+      </View>
+      <Text style={styles.commentUser}>{comentario.usuario_nome}</Text>
+      <Text style={styles.commentContent}>
+        {comentario.conteudo_comentario}
+      </Text>
+    </View>
+  ))}
+</View>
+      </View>
     </ScrollView>
   );
 }
@@ -199,7 +223,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 2,
   },
   userImage: {
     width: 50,
@@ -213,6 +237,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#fff",
   },
+  usernameComment: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
+  },
+
   content: {
     fontSize: 16,
     color: "#fff",
@@ -229,7 +259,7 @@ const styles = StyleSheet.create({
   },
   comment: {
     marginBottom: 12,
-    padding: 8,
+    padding: 20,
     backgroundColor: "#f3f3f3",
     borderRadius: 8,
   },
