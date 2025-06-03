@@ -14,6 +14,7 @@ export default function StackNavigator() {
             <Stack.Screen name="Edit" component={Edit} />
             <Stack.Screen name="PostDetalhes" component={PostDetalhes} />
             <Stack.Screen name="Noticias" component={Noticias} />
+            
         </Stack.Navigator>
     );
 }
