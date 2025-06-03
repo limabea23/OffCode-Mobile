@@ -1,8 +1,11 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView, Text } from 'react-native';
+import React, {useEffect, useState} from 'react';
+import { StyleSheet, View, ScrollView, Text, ActivityIndicator, Alert, Image} from 'react-native';
+import axios from 'axios';
 import Header from '../components/Header';
 import Card from '../components/Card';
 import DoubtSession from '../components/DoubtSession';
+import Constants from 'expo-constants';
+
 
 export default function Duvidas() {
     return (
