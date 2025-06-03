@@ -7,8 +7,10 @@ import NewsSection from '../components/NewsSection';
 import Card from '../components/Card';
 import Constants from 'expo-constants';
 import loadingGif from '../assets/public/loading.gif';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Noticias() {
+  const navigation = useNavigation();
   const [busca, setBusca] = useState('');
   const [resultados, setResultados] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -86,6 +88,8 @@ export default function Noticias() {
         data={resultados}
         keyExtractor={(item, idx) => item.id_post?.toString() ?? idx.toString()}
         renderItem={({ item: post, index: idx }) => (
+          <TouchableOpacity
+            onPress={() => navigation.navigate('PostDetalhes', {post, apiImg})} >
           <Card
             key={post.id_post ?? idx}
             header={
@@ -109,6 +113,7 @@ export default function Noticias() {
             }
             likes={Number(post.quantidade_curtidas)}
           />
+          </TouchableOpacity>
         )}
         ListFooterComponent={
           <View style={{ alignItems: 'center', margin: 16 }}>
