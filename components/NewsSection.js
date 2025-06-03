@@ -1,39 +1,42 @@
 // Seção específica para notícias
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default function NewsSection() {
-    const images = [
-        { id: '1', uri: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kZXxlbnwwfHwwfHx8MA%3D%3D' },
-        { id: '2', uri: 'https://blog.convisoappsec.com/wp-content/uploads/2017/05/83256-revisao-de-codigo-de-ti-saiba-como-fazer-e-a-importancia-de-revisar-1200x900.jpg' },
-        { id: '3', uri: 'https://media.istockphoto.com/id/537331500/pt/foto/fundo-abstrato-tecnologia-de-c%C3%B3digo-de-programa%C3%A7%C3%A3o-de-deve-software.jpg?s=612x612&w=0&k=20&c=8Q1G7JeiWFFYn0ErWNsYzq3lBuutUT5S8kbcBfpiQyw=' },
-    ];
+    const navigation = useNavigation();
+    const route = useRoute();
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    // Imagem fixa
+    const image = { uri: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29kZXxlbnwwfHwwfHx8MA%3D%3D' };
 
-    const handleNext = () => {
-        if (currentIndex < images.length - 1) {
-            setCurrentIndex(currentIndex + 1);
+    // Função para navegar entre páginas ao clicar nas setas
+    const handleArrow = (direction) => {
+        if (direction === 'right' && route.name === 'Noticias') {
+            navigation.navigate('Duvidas');
         }
-    };
-
-    const handlePrev = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
+        if (direction === 'left' && route.name === 'Duvidas') {
+            navigation.navigate('Noticias');
         }
     };
 
     return (
         <View style={styles.newsSection}>
             <View style={styles.carousel}>
-                <TouchableOpacity onPress={handlePrev} style={styles.arrowButton}>
+                <TouchableOpacity
+                    onPress={() => handleArrow('left')}
+                    style={styles.arrowButton}
+                >
                     <Text style={styles.arrowText}>{"<"}</Text>
                 </TouchableOpacity>
                 <Image
-                    source={{ uri: images[currentIndex].uri }}
+                    source={image}
                     style={styles.newsImage}
                 />
-                <TouchableOpacity onPress={handleNext} style={styles.arrowButton}>
+                <TouchableOpacity
+                    onPress={() => handleArrow('right')}
+                    style={styles.arrowButton}
+                >
                     <Text style={styles.arrowText}>{">"}</Text>
                 </TouchableOpacity>
             </View>
