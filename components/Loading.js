@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Image, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 
 export default function Loading() {
     return (
     <View style={styles.container}>
-        <Image style={styles.image} source={require('../assets/public/on-off.gif')} />
+        <Image source={require('../assets/public/on-off.gif')} style={{height:200,width:200}} autoplay />
         <Text style={styles.text}>Carregando...</Text>
         <StatusBar style="auto" />
     </View>
@@ -17,12 +18,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
-},
-    image: {
-    borderRadius: 50,
-    borderColor: '#fff',
-    width: 250,
-    height: 250,
 },
     text: {
     color: '#fff',

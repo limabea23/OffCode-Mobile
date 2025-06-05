@@ -3,14 +3,13 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Card({ userName, content }) {
+export default function Card({ header, content, anexos, likes: likesProp }) {
   const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(205);
+  const [likes, setLikes] = useState(likesProp); 
   const [saved, setSaved] = useState(false);
-  const [saves, setSaves] = useState(99);
+  const [saves, setSaves] = useState(1); 
   const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState('');
-  const [commentsCount, setCommentsCount] = useState(100);
 
   function handleLike() {
     setLiked(!liked);
@@ -24,24 +23,25 @@ export default function Card({ userName, content }) {
 
   function handleCommentSend() {
     if (comment.trim() !== '') {
-      setCommentsCount(commentsCount + 1);
       setComment('');
       setShowComment(false);
     }
   }
 
   return (
-    <View style={styles.card}>
-      <Text style={styles.cardTitle}>{userName}</Text>
-      <Text style={styles.cardContent}>{content}</Text>
-      <View style={styles.cardFooter}>
+  <View style={styles.card}>
+    {header}
+    <Text style={styles.cardContent}>
+      {content}
+    </Text>
+    {anexos}
+    <View style={styles.cardFooter}>
         <TouchableOpacity style={styles.iconButton} onPress={handleLike}>
           <Ionicons name="heart-outline" size={20} color={liked ? '#8000ff' : '#333'} />
           <Text style={[styles.iconText, liked && { color: '#8000ff' }]}>{likes}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={() => setShowComment(!showComment)}>
           <Ionicons name="chatbubble-outline" size={20} color="#333" />
-          <Text style={styles.iconText}>{commentsCount}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconButton} onPress={handleSave}>
           <Ionicons name={saved ? "bookmark" : "bookmark-outline"} size={20} color={saved ? "#8000ff" : "#333"} />
@@ -62,6 +62,8 @@ export default function Card({ userName, content }) {
     </View>
   );
 }
+
+
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#ffffff',
@@ -73,6 +75,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 3,
+        width: '90%',
+        alignSelf: 'center',
     },
     cardTitle: {
         fontWeight: 'bold',
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
     },
     cardContent: {
         fontSize: 14,
-        color: '#555',
+        color: '#000',
         marginBottom: 20,
         lineHeight: 20,
         textAlign: 'justify',
