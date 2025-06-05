@@ -4,6 +4,8 @@ import Edit from "../pages/Edit";
 import TabNavigator from "./TabNavigator";
 import PostDetalhes from "../pages/PostDetalhes";
 import Noticias from "../pages/Noticias";
+import Duvidas from "../pages/Duvidas";
+import DuvidasDetalhes from "../pages/DuvidasDetalhes";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,6 +16,8 @@ export default function StackNavigator() {
             <Stack.Screen name="Edit" component={Edit} />
             <Stack.Screen name="PostDetalhes" component={PostDetalhes} />
             <Stack.Screen name="Noticias" component={Noticias} />
+            <Stack.Screen name="Duvidas" component={Duvidas} />
+            <Stack.Screen name="DuvidasDetalhes" component={DuvidasDetalhes} />
             
         </Stack.Navigator>
     );

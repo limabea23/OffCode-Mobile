@@ -15,23 +15,16 @@ import { ScrollView } from "react-native";
 import axios from "axios";
 import Constants from "expo-constants";
 
-export default function PostDetalhes() {
+export default function DuvidasDetalhes() {
   const route = useRoute();
-  const { post, apiImg } = route.params;
+  const { duvida, apiImg } = route.params;
   const navigation = useNavigation();
-  const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(Number(post.quantidade_curtidas) || 0);
   const [saved, setSaved] = useState(false);
   const [saves, setSaves] = useState(1);
   const [showComment, setShowComment] = useState(false);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const { apiUrl, apiKey } = Constants.expoConfig.extra;
-
-  function handleLike() {
-    setLiked(!liked);
-    setLikes(likes + (liked ? -1 : 1));
-  }
 
   function handleSave() {
     setSaved(!saved);
@@ -46,15 +39,16 @@ export default function PostDetalhes() {
   }
 
   useEffect(() => {
+    console.log("ID da dúvida:", duvida.id_duvida);
     axios
-      .get(`${apiUrl}comments/user/${post.id_post}`, {
+      .get(`${apiUrl}comments/user/${duvida.id_duvida}`, {
         headers: { "x-api-key": apiKey },
       })
       .then((response) => {
-      setComments(Array.isArray(response.data) ? response.data : []);
-    })
-    .catch((error) => console.log("Erro ao buscar comentários:", error));
-}, []);
+        setComments(Array.isArray(response.data) ? response.data : []);
+      })
+      .catch((error) => console.log("Erro ao buscar comentários:", error));
+  }, []);
 
   return (
     <ScrollView style={styles.container}>
@@ -68,39 +62,29 @@ export default function PostDetalhes() {
           color="#8000ff"
         />
       </TouchableOpacity>
-      <View style={styles.containerPost}>
+      <View style={styles.containerDuvida}>
         <View style={styles.header}>
           <Image
             source={
-              !post.foto_perfil ||
-              post.foto_perfil.trim().toLowerCase() === "null"
+              !duvida.foto_perfil ||
+              duvida.foto_perfil.trim().toLowerCase() === "null"
                 ? require("../assets/public/default-profile.png")
-                : { uri: `${apiImg}/${post.foto_perfil}` }
+                : { uri: `${apiImg}/${duvida.foto_perfil}` }
             }
             style={styles.userImage}
           />
-          <Text style={styles.userName}>{post.usuario_nome}</Text>
+          <Text style={styles.userName}>{duvida.usuario_nome}</Text>
         </View>
-        <Text style={styles.content}>{post.conteudo_post}</Text>
+        <Text style={styles.content}>{duvida.conteudo_duvida}</Text>
 
-        {post.anexo && post.anexo !== "null" && (
+        {duvida.anexo && duvida.anexo !== "null" && (
           <Image
-            source={{ uri: `${apiImg}/${post.anexo}` }}
+            source={{ uri: `${apiImg}/${duvida.anexo}` }}
             style={styles.anexoImage}
             resizeMode="cover"
           />
         )}
         <View style={styles.cardFooter}>
-          <TouchableOpacity style={styles.iconButton} onPress={handleLike}>
-            <Ionicons
-              name="heart-outline"
-              size={20}
-              color={liked ? "#8000ff" : "#fff"}
-            />
-            <Text style={[styles.iconText, liked && { color: "#8000ff" }]}>
-              {likes}
-            </Text>
-          </TouchableOpacity>
           <TouchableOpacity
             style={styles.iconButton}
             onPress={() => setShowComment(!showComment)}
@@ -139,14 +123,14 @@ export default function PostDetalhes() {
       <View style={styles.header}>
       <Image
             source={
-              !post.foto_perfil ||
-              post.foto_perfil.trim().toLowerCase() === "null"
+              !duvida.foto_perfil ||
+              duvida.foto_perfil.trim().toLowerCase() === "null"
                 ? require("../assets/public/default-profile.png")
-                : { uri: `${apiImg}/${post.foto_perfil}` }
+                : { uri: `${apiImg}/${duvida.foto_perfil}` }
             }
             style={styles.userImage}
           />
-          <Text style={styles.usernameComment}>{post.usuario_nome}</Text>
+          <Text style={styles.usernameComment}>{duvida.usuario_nome}</Text>
       </View>
       <Text style={styles.commentUser}>{comentario.usuario_nome}</Text>
       <Text style={styles.commentContent}>
@@ -214,7 +198,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     padding: 10,
   },
-  containerPost: {
+  containerDuvida: {
     backgroundColor: "#1a1a1a",
     borderRadius: 12,
     padding: 16,

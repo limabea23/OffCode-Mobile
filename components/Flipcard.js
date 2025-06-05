@@ -54,7 +54,7 @@ export default function Flipcard({ image, name, funcao, github, linkedin, email 
 
     return (
         <TouchableWithoutFeedback onPress={flipCard}>
-            <View style={{ width: 300, height: 450, marginTop: 15}}>
+            <View style={{ width: 300, height: 400, marginTop: 15}}>
                 <Animated.View style={frontAnimatedStyle}>
                     <Image source={image} style={styles.image} />
                 </Animated.View>
@@ -76,7 +76,7 @@ export default function Flipcard({ image, name, funcao, github, linkedin, email 
 const styles = StyleSheet.create({
 image: {
     width: 300,
-    height: 450,
+    height: 400,
     borderRadius: 10,
     resizeMode: 'cover',
     backgroundColor: '#864FF4',

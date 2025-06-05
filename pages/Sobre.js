@@ -3,6 +3,8 @@ import { StyleSheet, Text, SafeAreaView, View, Image, ScrollView } from 'react-n
 import Carousel from "react-native-reanimated-carousel";
 import Flipcard from '../components/Flipcard';
 
+import { Dimensions } from 'react-native';
+
 export default function Sobre() { 
   const data = [
   { id: 1, image: require('../assets/public/anacarolina.png'), name:'Ana Carolina', funcao:'Scrum Master', github: 'https://github.com/AnaCarolinaFreitas', linkedin: 'https://www.linkedin.com/in/ana-carolina-garcia-freitas-4907b52b1/', email: 'mailto:ana.c.freitas35@aluno.senai.br'},
@@ -28,7 +30,7 @@ export default function Sobre() {
 
       <View style={styles.carouselContainer}> 
         <Carousel
-          width={500}
+          width={Dimensions.get('window').width * 1}
           height={500}
           data={data}
           renderItem={({ item }) => (
@@ -81,13 +83,16 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#382166', 
     borderRadius: 10,
-    maxWidth: 350,
+
+    width: '85%', 
+
     height: 150,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'center', 
     marginTop: 15,
-    left: 5,
+
+    alignSelf: 'center',
   },
   conteudo: {
     flexDirection: 'row',
@@ -97,6 +102,6 @@ const styles = StyleSheet.create({
   imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    right: 60,
+    
   },
 });
