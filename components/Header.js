@@ -1,14 +1,14 @@
 // Cabeçalho comum a todas as páginas
 import React from 'react';
-import { View, StyleSheet, TextInput, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Header({ busca, onBuscaChange }) {
+export default function Header() {
     return (
         <View style={styles.header}>
             <View style={styles.logoContainer}>
                 <Image
-                    source={require('../assets/public/logotipo.png')}
+                    source={require('../assets/public/logotipo.png')} 
                     style={styles.logo}
                 />
             </View>
@@ -18,8 +18,6 @@ export default function Header({ busca, onBuscaChange }) {
                     style={styles.searchInput}
                     placeholder="Buscar..."
                     placeholderTextColor="#aaa"
-                    value={busca}
-                    onChangeText={onBuscaChange}
                 />
             </View>
         </View>
@@ -29,37 +27,40 @@ export default function Header({ busca, onBuscaChange }) {
 const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center', 
         justifyContent: 'space-between',
         backgroundColor: '#000',
         marginTop: 20,
         width: '100%',
         padding: 5,
+        
     },
     logoContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        marginRight: 16,
     },
     logo: {
         width: 195,
         height: 70,
         borderRadius: 10,
         borderWidth: 2,
+        
     },
     searchContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center', 
         backgroundColor: '#fff',
         borderRadius: 20,
         paddingHorizontal: 20,
         width: 180,
         height: 40,
     },
-    searchIcon: {
+searchIcon: {
         marginRight: 10,
         color: '#aaa',
     },
-    searchInput: {
+searchInput: {
         flex: 1,
         fontSize: 14,
         color: '#000',
