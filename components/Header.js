@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Header() {
+export default function Header({ value, onBuscaChange }) {
     return (
         <View style={styles.header}>
             <View style={styles.logoContainer}>
@@ -16,6 +16,8 @@ export default function Header() {
                 <Ionicons name="search" size={20} color="#aaa" style={styles.searchIcon} />
                 <TextInput
                     style={styles.searchInput}
+                    value={value}
+                    onChangeText={onBuscaChange}
                     placeholder="Buscar..."
                     placeholderTextColor="#aaa"
                 />
@@ -23,7 +25,6 @@ export default function Header() {
         </View>
     );
 }
-
 const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',

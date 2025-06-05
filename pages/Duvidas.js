@@ -88,7 +88,7 @@ useEffect(() => {
 
   return (
     <View style={styles.container}>
-      <Header busca={busca} onBuscaChange={handleBusca} />
+      <Header value={busca} onBuscaChange={handleBusca} />
       <FlatList
         ref={flatListRef}
         data={resultados}
@@ -122,7 +122,7 @@ useEffect(() => {
         ListFooterComponent={
           <View style={{ alignItems: 'center', margin: 16 }}>
             <Text style={{ color: '#fff', textAlign: 'center', marginBottom: 8 }}>
-              Você chegou ao fim dos posts.
+              Você chegou ao fim das dúvidas.
             </Text>
             <TouchableOpacity
               style={styles.upButton}
