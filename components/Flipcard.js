@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableWithoutFeedback, StyleSheet, TouchableOpacity } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -63,9 +63,15 @@ export default function Flipcard({ image, name, funcao, github, linkedin, email 
                     <Text style={{ color: '#fff', fontSize: 20 }}>{funcao}</Text>
                     <Text style={{ color: '#fff', fontSize: 20 }}>Parte da equipe OffCode</Text>
                     <View style={styles.icons}>
-                        <AntDesign name="github" size={40} color="white" onPress={handleGithubPress} />
-                        <AntDesign name="linkedin-square" size={40} color="white" onPress={handleLinkedinPress} />
-                        <MaterialCommunityIcons name="email" size={40} color="white" onPress={handleEmailPress} />
+                    <TouchableOpacity onPress={handleGithubPress}>
+                        <AntDesign name="github" size={40} color="white" />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleLinkedinPress}>
+                        <AntDesign name="linkedin-square" size={40} color="white"  />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={handleEmailPress}>
+                        <MaterialCommunityIcons name="email" size={40} color="white"  />
+                    </TouchableOpacity>
                     </View>
                 </Animated.View>
             </View>
