@@ -29,9 +29,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center', 
         justifyContent: 'space-between',
-        padding: 16,
         backgroundColor: '#000',
         marginTop: 20,
+        width: '100%',
+        padding: 5,
         
     },
     logoContainer: {
@@ -46,18 +47,12 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         
     },
-    subtitle: {
-        color: '#fff',
-        fontSize: 12,
-        textAlign: 'left',
-        flexWrap: 'wrap',
-    },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center', 
         backgroundColor: '#fff',
         borderRadius: 20,
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
         width: 180,
         height: 40,
     },
