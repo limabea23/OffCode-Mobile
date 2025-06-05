@@ -10,7 +10,7 @@ export default function Sobre() {
   { id: 3, image: require('../assets/public/beatriz.png'), name:'Beatriz', funcao:'Desenvolvedora', github: 'https://github.com/limabea23', linkedin: 'https://www.linkedin.com/in/beatriz-lima-74145430a/', email: 'mailto:beatriz.lima14@aluno.senai.br' },
   { id: 4, image: require('../assets/public/bernardo.png'), name:'Bernardo', funcao:'Desenvolvedor', github: 'https://github.com/Bernardo1401', linkedin: 'https://www.linkedin.com/in/bernardo-gabriel-de-moraes-marques-146b222b1/', email: 'mailto:bernardo.g.marques@aluno.senai.br' },
   { id: 5, image: require('../assets/public/caio.png'), name:'Caio', funcao:'Product Owner', github: 'https://github.com/CaioGabDev', linkedin: 'https://www.linkedin.com/in/caio-lacerda-062b222b1/', email: 'mailto:caio.g.silva20@aluno.senai.br' },
-  { id: 6, image: require('../assets/public/luana.png'), name:'Luana', funcao:'Desenvolvedora', github: 'https://github.com/domeneghetti', linkedin: 'https://www.linkedin.com/in/luana-domeneghetti-827b1b2b1/', email: 'mailto:luana.domeneghetti@aluno.senai.br' },
+  { id: 6, image: require('../assets/public/luana.png'), name:'Luana', funcao:'Desenvolvedora', github: 'https://github.com/domeneghettii', linkedin: 'https://www.linkedin.com/in/luana-domeneghetti-827b1b2b1/', email: 'mailto:luana.domeneghetti@aluno.senai.br' },
 ];  
 
   return (
