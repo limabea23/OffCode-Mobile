@@ -8,8 +8,10 @@ import { FlatList } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import DoubtSession from '../components/DoubtSession';
 import loadingGif from '../assets/public/loading.gif';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Duvidas() {
+  const navigation = useNavigation();
   const [busca, setBusca] = useState('');
   const [resultados, setResultados] = useState([]);
   const [duvidas, setDuvidas] = useState([]);
@@ -18,6 +20,8 @@ export default function Duvidas() {
   const { apiUrl, apiImg, apiKey } = Constants.expoConfig.extra;
 
   useEffect(() => {
+    console.log("Buscando dúvidas em:", `${apiUrl}duvidas`);
+    console.log("API KEY:", apiKey);
     fetchDuvidas();
   }, []);
 
@@ -90,6 +94,8 @@ useEffect(() => {
         data={resultados}
         keyExtractor={(item, idx) => (item.id_duvida ? item.id_duvida.toString() : idx.toString())}
         renderItem={({ item: duvida, index: idx }) => (
+          <TouchableOpacity
+                      onPress={() => navigation.navigate('DuvidasDetalhes', {duvida, apiImg})} >
           <Card
             key={duvida.id_duvida ?? idx}
             header={
@@ -111,6 +117,7 @@ useEffect(() => {
             )}
             likes={Number(duvida.quantidade_curtidas)}
           />
+          </TouchableOpacity>
         )}
         ListFooterComponent={
           <View style={{ alignItems: 'center', margin: 16 }}>
