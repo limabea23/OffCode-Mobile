@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginRight: 16,
     },
     logo: {
-        width: 195,
+        width: 150,
         height: 70,
         borderRadius: 10,
         borderWidth: 2,
@@ -54,8 +54,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 20,
         paddingHorizontal: 20,
-        width: 180,
+        width: 150,
         height: 40,
+        marginRight: '10%',
     },
 searchIcon: {
         marginRight: 10,

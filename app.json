@@ -4,8 +4,8 @@
     "slug": "OffCode-Mobile",
     "version": "1.0.0",
     "extra": {
-      "apiUrl": "http://10.88.199.152:3000/api/",
-      "apiImg": "http://10.88.199.152:3000/uploads/",
+      "apiUrl": "http://192.168.0.71:3000/api/",
+      "apiImg": "http://192.168.0.71:3000/uploads/",
       "apiKey": "L7Gx7P4BtsG7R6x5BAjyt8g8SCpIhw"
     },
     "orientation": "portrait",
