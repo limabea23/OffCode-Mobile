@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { StyleSheet, View, Text, Alert, Image, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import Header from '../components/Header';
-import Card from '../components/Card';
+import Card from '../components/CardDuvida';
 import Constants from 'expo-constants';
 import { FlatList } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
